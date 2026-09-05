@@ -1,0 +1,5 @@
+﻿field,n_valid,n_blank_excluded,Po,Pe,kappa,kappa_95CI_low,kappa_95CI_high,Po_95CI_low,Po_95CI_high,PABAK,Pe_to_1_artifact
+design_type,50,0,0.94,0.94,0.0,nan,nan,nan,nan,0.88,no
+IV_selection_strategy,35,15,0.7429,0.4833,0.5024,0.2423,0.7569,0.6,0.8857,0.4857,no
+reports_overlap_risk,8,42,0.75,0.5,0.5,-0.25,1.0,0.5,1.0,0.5,no
+OVERALL_macro,,,,,0.3341,,,,,,avg of non-artifact fields

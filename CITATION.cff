@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the accompanying paper."
+title: "Correcting for instrument overlap in two-step summary-data Mendelian randomization mediation: a closed-form covariance and its empirical prevalence"
+authors:
+  - family-names: Chen
+    given-names: Yan
+    affiliation: "Department of General Practice, The First Affiliated Hospital of Zhejiang Chinese Medical University (Zhejiang Provincial Hospital of Chinese Medicine), Hangzhou, China"
+  - family-names: Wang
+    given-names: Jianfeng
+    affiliation: "Department of Respiratory Diseases, The First Affiliated Hospital of Zhejiang Chinese Medical University (Zhejiang Provincial Hospital of Chinese Medicine), Hangzhou, China"
+    orcid: "0000-0000-0000-0000"
+year: 2026
+doi: 10.5281/zenodo.XXXXXXX
+url: "https://github.com/author/two-step-mr-cov"
+repository-code: "https://github.com/author/two-step-mr-cov"
+license: MIT
+keywords:
+  - "Mendelian randomization"
+  - "mediation analysis"
+  - "two-step MR"
+  - "instrument overlap"
+  - "covariance correction"
+  - "summary statistics"

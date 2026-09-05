@@ -1,0 +1,52 @@
+[22:40:02] ======================================================================
+[22:40:02] D61 新颖性查重开始
+[22:40:02] ======================================================================
+[22:40:02] 
+########## 第7组（用户指定查重式）##########
+[22:40:02] 
+>>> 检索式: instrument overlap[Title/Abstract] AND Mendelian randomization[Title/Abstract] AND covariance[Title/Abstract]
+[22:40:05]   命中总数: 0
+[22:40:05]   → 2024-2026 窗口内命中: 0
+[22:40:05] 
+>>> 检索式: "instrument overlap"[Title/Abstract] AND mediation[Title/Abstract]
+[22:40:06]   命中总数: 0
+[22:40:06]   → 2024-2026 窗口内命中: 0
+[22:40:06] 
+########## 宽式补充（防用词差异漏检）##########
+[22:40:06] 
+>>> 检索式: instrument overlap[Title/Abstract] AND Mendelian randomization[Title/Abstract]
+[22:40:07]   命中总数: 0
+[22:40:07]   → 2024-2026 窗口内命中: 0
+[22:40:07] 
+>>> 检索式: "overlapping instruments"[Title/Abstract] AND Mendelian randomization[Title/Abstract]
+[22:40:09]   命中总数: 0
+[22:40:09]   → 2024-2026 窗口内命中: 0
+[22:40:09] 
+>>> 检索式: shared instrument[Title/Abstract] AND Mendelian randomization[Title/Abstract] AND mediation[Title/Abstract]
+[22:40:10]   命中总数: 0
+[22:40:10]   → 2024-2026 窗口内命中: 0
+[22:40:11] 
+>>> 检索式: Mendelian randomization[Title/Abstract] AND mediation[Title/Abstract] AND covariance[Title/Abstract]
+[22:40:11]   命中总数: 2
+[22:40:13]   PMID:40195352 [2025 Apr 7] Sci Rep | Genetic correlations and causal associations between BMI, HDL-C, and postoperative infections: a two-sample Mendelian randomization study.  <<< 2024-2026
+[22:40:13]   PMID:39892846 [2025 Mar 20] Prog Neuropsychopharmacol Biol Psychiatry | Causal relationship between mental disorders and abdominal aortic aneurysm: Insights from the genetic perspective.  <<< 2024-2026
+[22:40:13]   → 2024-2026 窗口内命中: 2
+[22:40:13] 
+>>> 检索式: "two-step" Mendelian randomization[Title/Abstract] AND overlap[Title/Abstract]
+[22:40:15]   命中总数: 7
+[22:40:17]   PMID:42530798 [2026 Jul 30] Mol Divers | Polyamide-66 microplastics and early-onset ischemic stroke: a systems toxicology, multi-omics, and molecular dynamics simulation analysis.  <<< 2024-2026
+[22:40:17]   PMID:40229388 [2025 Apr 14] Sci Rep | Circulating citrate as a mediator in the relationship between HMGCR inhibitors and chronic hepatitis B: a Mendelian randomization study.  <<< 2024-2026
+[22:40:17]   PMID:40181221 [2025 Jun] Neurol Res | Mediators of the causal associations between protein ratios and ischemic stroke: a two-step Mendelian randomization study.  <<< 2024-2026
+[22:40:17]   PMID:39690818 [2025 Feb 8] Hum Mol Genet | Dissecting the shared genetic architecture between nonalcoholic fatty liver disease and type 2 diabetes.  <<< 2024-2026
+[22:40:17]   PMID:37823088 [2023] Front Nutr | Circulating vitamin levels mediate the causal relationship between gut microbiota and cholecystitis: a two-step bidirectional Mendelian randomization study.
+[22:40:17]   PMID:37086791 [2023 Jul 15] J Affect Disord | Identifying causal associations between early sexual intercourse or number of sexual partners and major depressive disorders: A bidirectional two-sample Mendelian randomization analysis.
+[22:40:17]   PMID:35399945 [2022] Front Endocrinol (Lausanne) | Shared Genetic Basis and Causal Relationship Between Television Watching, Breakfast Skipping and Type 2 Diabetes: Evidence From a Comprehensive Genetic Analysis.
+[22:40:17]   → 2024-2026 窗口内命中: 4
+[22:40:17] 
+>>> 检索式: product method[Title/Abstract] AND Mendelian randomization[Title/Abstract] AND overlap[Title/Abstract]
+[22:40:18]   命中总数: 0
+[22:40:18]   → 2024-2026 窗口内命中: 0
+[22:40:18] 
+======================================================================
+[22:40:18] D61 新颖性查重结束。请逐条核对 2024-2026 命中是否为同一 gap。
+[22:40:18] ======================================================================
