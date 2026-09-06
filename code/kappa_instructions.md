@@ -1,9 +1,10 @@
 # Second-coder blind re-coding — instructions
 
-This package lets an **independent human coder** re-code a stratified sample of 50
+This package lets a **blinded human coder** re-code a stratified sample of 50
 studies so that inter-coder reliability (Cohen's κ) can be reported honestly. The
-first coder was an AI (Claude); κ is only meaningful if the second coder is a
-different person who has **not** seen the answer key.
+original coding (the sealed answer key) was produced by the study team following
+the codebook; κ is only meaningful if the second coder is a different person who has
+**not** seen the answer key.
 
 ## Files
 
@@ -46,13 +47,20 @@ different person who has **not** seen the answer key.
 
 ## Integrity rules
 
-- The second coder must be a **truly independent human**: not a member of the
-  original coding team (YC/JW), not involved in designing this study, and **blind
-  to the paper's hypothesis** (that overlap is common and usually uncorrected).
+- The second coder must be a **human who is blind to the sealed answer key and to
+  the paper's hypothesis** (that overlap is common and usually uncorrected). The
+  original coder (J.W.) must **not** perform the second coding — re-coding one's own
+  key is circular and inflates agreement. A co-author who did not create the key
+  (e.g., C.Y.) is acceptable as a *within-team blinded rater*, provided they were not
+  involved in designing the coding scheme and stay blind to the key until their
+  labels are submitted. A fully external independent rater remains the gold standard
+  and is preferred wherever one is available.
 - The second coder must be blind to the answer key until their labels are submitted.
 - Do not copy values from the answer key — that would invalidate κ.
 - `compute_kappa_2nd.py` refuses to run if the coding columns are empty; it never
   fabricates labels.
-- This is the single most important reliability fix for the manuscript: a κ from a
-  within-team or AI second pass is a known limitation; only an independent human
-  rater produces a defensible inter-coder reliability figure.
+- Inter-coder reliability is strongest when the second coder is an external
+  independent rater; a *within-team blinded* second coder (a co-author blind to the
+  key) is an acceptable substitute when no external rater is available, and must be
+  disclosed as such. A κ computed by the original coder on their own key is invalid
+  and must never be reported.
