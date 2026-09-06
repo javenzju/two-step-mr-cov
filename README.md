@@ -2,7 +2,7 @@
 
 **Correcting for instrument overlap in two-step summary-data Mendelian randomization mediation: a closed-form covariance and its empirical prevalence**
 
-Companion code, data, and figures for the manuscript submitted to the *European Journal of Human Genetics* (EJHG).
+Companion code, data, and figures for the manuscript submitted to the *Journal of Clinical Epidemiology* (JCE).
 
 > Authors: Yan Chen¹, Jianfeng Wang²
 > ¹ Department of General Practice, The First Affiliated Hospital of Zhejiang Chinese Medical University (Zhejiang Provincial Hospital of Chinese Medicine), Hangzhou, China.
@@ -61,7 +61,7 @@ D61_Supplementary_S1-S6_derivation.md   # closed-form derivations (S1–S6)
 D61_Supplementary_S7_kappa.md           # inter-coder reliability (S7)
 D61_Supplementary_S8_batch.md          # batch re-estimation (S8)
 D61_Supplementary_codebook_S1.md       # literature coding codebook
-cover_letter_EJHG_20260904.md          # EJHG cover letter
+cover_letter_JCE_20260906.md            # Journal of Clinical Epidemiology cover letter
 ```
 
 ## Reproducing the results
