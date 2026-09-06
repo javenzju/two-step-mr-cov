@@ -11,8 +11,8 @@ authors:
     orcid: "0000-0000-0000-0000"
 year: 2026
 doi: 10.5281/zenodo.XXXXXXX
-url: "https://github.com/author/two-step-mr-cov"
-repository-code: "https://github.com/author/two-step-mr-cov"
+url: "https://github.com/javenzju/two-step-mr-cov"
+repository-code: "https://github.com/javenzju/two-step-mr-cov"
 license: MIT
 keywords:
   - "Mendelian randomization"

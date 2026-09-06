@@ -85,7 +85,7 @@ Real GWAS summary statistics were obtained through **IEU OpenGWAS** (https://gwa
 
 ## Archiving
 
-A public GitHub repository is at `https://github.com/author/two-step-mr-cov` (replace `author` with the real GitHub username before going live). An archived copy with a frozen DOI will be deposited at **Zenodo** (DOI: `10.5281/zenodo.XXXXXXX`, to be minted on acceptance).
+A public GitHub repository is at `https://github.com/javenzju/two-step-mr-cov`. An archived copy with a frozen DOI will be deposited at **Zenodo** (DOI: `10.5281/zenodo.XXXXXXX`, to be minted on acceptance).
 
 ## License
 
