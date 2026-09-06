@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "upload_type": "software",
+    "title": "Two-step MR mediation instrument-overlap covariance correction: code, replication, and literature-audit package",
+    "creators": [
+      {
+        "name": "Chen, Yan",
+        "orcid": "0009-0001-6328-7403",
+        "affiliation": "The First Affiliated Hospital of Zhejiang Chinese Medical University (Zhejiang Provincial Hospital of Chinese Medicine), Hangzhou, China"
+      },
+      {
+        "name": "Wang, Jianfeng",
+        "orcid": "0000-0002-6316-6361",
+        "affiliation": "The First Affiliated Hospital of Zhejiang Chinese Medical University (Zhejiang Provincial Hospital of Chinese Medicine), Hangzhou, China"
+      }
+    ],
+    "description": "Repository accompanying 'Correcting for instrument overlap in two-step summary-data Mendelian randomization mediation: a closed-form covariance and its empirical prevalence'. Contains (1) the diagnostic tool estimate_cov_prod_mr() (R) and its TwoSampleMR- and ieugwasr-compatible wrappers; (2) validation scripts (180-cell coverage grid, 12-cell targeted sweep, bootstrap fallback); (3) the all-Python Phase-B batch re-estimation pipeline (OpenGWAS REST /tophits + /associations, harmonized IVW, S10 correction) and the 113-study recomputation outputs; (4) the inter-coder reliability work package (blind re-coding template, sealed answer key, compute_kappa_2nd.py); (5) the literature coding table and codebook; (6) the PRISMA literature-audit flow and figures. The closed-form Cov(alpha_hat, beta_hat) corrects the variance of the product-method indirect effect under shared instruments (n_s > 0) and mediator-outcome sample overlap (rho_MY > 0).",
+    "license": "mit",
+    "keywords": [
+      "Mendelian randomization",
+      "mediation analysis",
+      "two-step MR",
+      "instrument overlap",
+      "covariance correction",
+      "summary statistics",
+      "genetic epidemiology"
+    ],
+    "access_right": "open",
+    "version": "v1.0-submission",
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/javenzju/two-step-mr-cov",
+        "relation": "isContinuedBy",
+        "resource_type": "software"
+      }
+    ]
+  }
+}

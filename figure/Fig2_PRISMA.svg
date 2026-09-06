@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="1060" viewBox="0 0 840 1060">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="420.0" y="34" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="bold" fill="#1a1a1a">Figure 2. PRISMA 2020 flow diagram of the literature audit</text>
+<text x="420.0" y="56" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#555">Systematic screen of published two-step (product-method) MR mediation studies, 2024-2026</text>
+<defs><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#333333"/></marker></defs>
+<rect x="250" y="80" width="330" height="78" rx="6" ry="6" fill="#e8eef5" stroke="#2b5d8a" stroke-width="1.5"/>
+<text x="415.0" y="102" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a">Identification</text>
+<text x="415.0" y="117" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#222">Records identified from database searching</text>
+<text x="415.0" y="131" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#222">n = 695  (9 PubMed query strings, 2024-2026)</text>
+<rect x="250" y="220" width="330" height="78" rx="6" ry="6" fill="#e8eef5" stroke="#2b5d8a" stroke-width="1.5"/>
+<text x="415.0" y="242" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a">Screening</text>
+<text x="415.0" y="257" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#222">Records screened</text>
+<text x="415.0" y="271" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#222">n = 695</text>
+<rect x="620" y="220" width="220" height="78" rx="6" ry="6" fill="#f3e8e8" stroke="#a05252" stroke-width="1.5"/>
+<text x="730.0" y="242" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a">Records excluded</text>
+<text x="730.0" y="256" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">n = 362 - not two-step MR</text>
+<text x="730.0" y="269" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">mediation (reviews,</text>
+<text x="730.0" y="282" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">non-human, single-step MR,</text>
+<text x="730.0" y="295" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">method papers, wrong</text>
+<text x="730.0" y="308" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">design)</text>
+<rect x="250" y="360" width="330" height="78" rx="6" ry="6" fill="#e8eef5" stroke="#2b5d8a" stroke-width="1.5"/>
+<text x="415.0" y="382" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a">Eligibility</text>
+<text x="415.0" y="397" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#222">Reports assessed for eligibility</text>
+<text x="415.0" y="411" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#222">n = 333  (two-step MR mediation)</text>
+<rect x="620" y="360" width="220" height="78" rx="6" ry="6" fill="#f3e8e8" stroke="#a05252" stroke-width="1.5"/>
+<text x="730.0" y="382" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a">Reports excluded</text>
+<text x="730.0" y="396" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">n = 220 - traits not all</text>
+<text x="730.0" y="409" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">resolvable to public GWAS</text>
+<text x="730.0" y="422" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">accessions with</text>
+<text x="730.0" y="435" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">EUR-clumped instruments</text>
+<text x="730.0" y="448" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">(non-European or</text>
+<text x="730.0" y="461" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">protein/QTL traits)</text>
+<rect x="250" y="500" width="330" height="78" rx="6" ry="6" fill="#e8eef5" stroke="#2b5d8a" stroke-width="1.5"/>
+<text x="415.0" y="522" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a">Included</text>
+<text x="415.0" y="537" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#222">Reports re-estimated from OpenGWAS</text>
+<text x="415.0" y="551" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#222">n = 113  (all 3 nodes resolved)</text>
+<rect x="620" y="500" width="220" height="78" rx="6" ry="6" fill="#f3e8e8" stroke="#a05252" stroke-width="1.5"/>
+<text x="730.0" y="522" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a">Skipped (errors)</text>
+<text x="730.0" y="536" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">n = 5 -</text>
+<text x="730.0" y="549" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">accession-resolution or</text>
+<text x="730.0" y="562" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">network errors (S210,</text>
+<text x="730.0" y="575" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">S173, S255, S291, S326)</text>
+<rect x="250" y="640" width="330" height="78" rx="6" ry="6" fill="#e8eef5" stroke="#2b5d8a" stroke-width="1.5"/>
+<text x="415.0" y="662" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a">Valid re-estimations</text>
+<text x="415.0" y="677" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#222">n = 108</text>
+<rect x="250" y="780" width="330" height="90" rx="6" ry="6" fill="#e8f3e8" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="415.0" y="802" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a">Genuine instrument overlap</text>
+<text x="415.0" y="817" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#222">n = 7  (6.5% [95% CI 3.2-12.8%])</text>
+<text x="415.0" y="831" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#222">n_s = 1-3, pi_shared = 0.019-1.0</text>
+<rect x="620" y="640" width="220" height="78" rx="6" ry="6" fill="#eef0ee" stroke="#6b8e6b" stroke-width="1.5"/>
+<text x="730.0" y="662" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="bold" fill="#1a1a1a">No overlap</text>
+<text x="730.0" y="676" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">n = 101 - correction not</text>
+<text x="730.0" y="689" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">applicable (disjoint</text>
+<text x="730.0" y="702" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="#222">instruments)</text>
+<line x1="415.0" y1="158" x2="415.0" y2="220" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="415.0" y1="298" x2="415.0" y2="360" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="415.0" y1="438" x2="415.0" y2="500" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="415.0" y1="578" x2="415.0" y2="640" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="415.0" y1="718" x2="415.0" y2="780" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="580" y1="539" x2="620" y2="539" stroke="#a05252" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="580" y1="399" x2="620" y2="399" stroke="#a05252" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="580" y1="259" x2="620" y2="259" stroke="#a05252" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="580" y1="679" x2="620" y2="679" stroke="#6b8e6b" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="40" y="920" width="760" height="110" rx="6" ry="6" fill="#fbfbfb" stroke="#bbb" stroke-width="1"/>
+<text x="56" y="942" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a">Empirical result (see 3.4)</text>
+<text x="56" y="960" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#333">All 7 overlapping trios were same-sign; the correction narrowed every CI (-0.2% to -16.0%</text>
+<text x="56" y="975" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#333">among the 5 non-degenerate trios, 0 flips). Two (S320, S293) are degenerate self-mediating</text>
+<text x="56" y="990" font-family="Arial,Helvetica,sans-serif" font-size="11" fill="#333">designs (exposure = mediator accession) flagged as boundary illustrations, not findings.</text>
+</svg>

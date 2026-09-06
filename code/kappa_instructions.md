@@ -46,7 +46,13 @@ different person who has **not** seen the answer key.
 
 ## Integrity rules
 
-- The second coder must be independent and blind to the key.
+- The second coder must be a **truly independent human**: not a member of the
+  original coding team (YC/JW), not involved in designing this study, and **blind
+  to the paper's hypothesis** (that overlap is common and usually uncorrected).
+- The second coder must be blind to the answer key until their labels are submitted.
 - Do not copy values from the answer key — that would invalidate κ.
 - `compute_kappa_2nd.py` refuses to run if the coding columns are empty; it never
   fabricates labels.
+- This is the single most important reliability fix for the manuscript: a κ from a
+  within-team or AI second pass is a known limitation; only an independent human
+  rater produces a defensible inter-coder reliability figure.
