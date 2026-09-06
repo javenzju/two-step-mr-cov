@@ -23,3 +23,7 @@ Thumbs.db
 # Local secrets
 *.token
 *_token.txt
+
+# transient push logs
+push_out.txt
+push_err.txt
