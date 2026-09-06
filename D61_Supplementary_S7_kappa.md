@@ -1,6 +1,6 @@
 # Supplementary Methods S7 — Inter-coder reliability assessment (Cohen's κ)
 
-This supplement documents the independent blind re-coding used to quantify the
+This supplement documents the blinded re-coding (a second blinded coding pass) used to quantify the
 reproducibility of the literature design classification reported in §3.3 of the
 main manuscript, and the coding-completeness limitations it revealed.
 
@@ -58,7 +58,7 @@ conflated with the two-step *product* method:
 - **S044** — individual-level MRI mediation, not two-step summary-data MR.
 - **S423** — individual-level causal mediation analysis.
 
-The second coder classified all three as `不属于两步法MR中介-排除`; the original
+The blind re-code classified all three as `不属于两步法MR中介-排除`; the original
 key had coded them `两步法MR中介`.
 
 ### S7.4 `IV_selection_strategy` disagreements (n = 9 of 35)

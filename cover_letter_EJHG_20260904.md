@@ -7,7 +7,9 @@
 
 ---
 
-Dear Editors,
+Dear Dr. Alisdair McNeill, Editor-in-Chief, *European Journal of Human Genetics*,
+
+Editorial Office, European Journal of Human Genetics, University of Sheffield, Sheffield, UK (EJHG@sheffield.ac.uk)
 
 We submit our manuscript entitled **"Correcting for instrument overlap in two-step summary-data Mendelian randomization mediation"** for consideration as an Original Article in the *European Journal of Human Genetics*.
 
