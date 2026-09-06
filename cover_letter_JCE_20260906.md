@@ -24,6 +24,8 @@ We submit our manuscript entitled **"Correcting for instrument overlap in two-st
 
 **Fit.** JCE's mission — innovative methods that improve health-care decision-making — is served by a paper that quantifies a systematically unreported design vulnerability and supplies the reporting convention (n_s, π_shared, ρ_MY) and tool needed to detect it, rather than by a paper claiming retrospective corrections to clinical conclusions. The manuscript is submitted with no open-access fee requested; all code and GWAS accessions are publicly available.
 
+**Accompanying submission items (JCE / Elsevier requirements).** We include (i) the JCE-required Highlights file (≤85 characters × 4 bullets); (ii) a Graphical Abstract (the conceptual Fig. 1); (iii) the completed PRISMA 2020 checklist as Supplementary Table S3; (iv) an AI-disclosure statement and a funder-no-role statement in the manuscript; and (v) a horizontal-pleiotropy sensitivity analysis (MR-Egger intercept and weighted-median on both steps of the five non-degenerate overlapping trios) in §3.4.1, confirming that no horizontal pleiotropy reverses the sign of α̂ or β̂ and that the covariance correction is robust to it.
+
 We declare no competing interests. We suggest [X, Y] as potential reviewers. Thank you for your consideration.
 
 Sincerely,
