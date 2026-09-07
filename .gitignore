@@ -27,3 +27,11 @@ Thumbs.db
 # transient push logs
 push_out.txt
 push_err.txt
+
+# Large/local kappa-coding aids (not part of submission package)
+code/kappa_chenyan_task/coding_key_snippets.md
+code/kappa_chenyan_task/coding_helper.html
+code/kappa_chenyan_task/fulltexts/
+code/kappa_chenyan_task/邮件_陈燕_盲态编码提醒.md
+# Obsolete SVG conversion attempt (superseded by direct matplotlib re-render)
+convert_fig_svg_to_png.py

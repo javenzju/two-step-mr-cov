@@ -2,13 +2,15 @@
 # -*- coding: utf-8 -*-
 """
 D61_make_figures.py
-Re-render Figure 5 and Figure 6 as 300-dpi PNGs (Times New Roman, all-English,
-Figure-numbered titles) so they can be embedded in the submission .docx.
+Re-render Supplementary Figure S2 (targeted validation sweep) and
+Supplementary Figure S3 (batch SE-change forest) as 300-dpi PNGs
+(Times New Roman, all-English, Figure-numbered titles) so they can be
+embedded in the submission .docx.
 
 Faithfulness: every value is taken verbatim from the manuscript tables
-(Table 1 for Fig 5, Table 3 for Fig 6); nothing is recomputed.
+(Supplementary Table S1 for S2, Table 3 for S3); nothing is recomputed.
 
-Output: <submission>/figure/Fig5_pisweep.png , Fig6_batch_forest.png
+Output: <submission>/figure/FigS2_pisweep.png , FigS3_batch_forest.png
 Log   : log/D61_make_figures.log
 """
 import os, io, matplotlib
@@ -37,12 +39,12 @@ plt.rcParams["legend.fontsize"] = 9
 plt.rcParams["figure.dpi"] = 300
 
 log("=" * 70)
-log("D61_make_figures.py — 300-dpi PNG re-render of Figure 5 and Figure 6")
+log("D61_make_figures.py — 300-dpi PNG re-render of Supplementary Figures S2 and S3")
 log("=" * 70)
 log(f"font family : {plt.rcParams['font.family']}")
 
-# ------------------------------------------------------------------ FIGURE 5
-# Table 1 : rho_MY = 0.5, n_reps = 30,000
+# ------------------------------------------------------------------ SUPPLEMENTARY FIGURE S2
+# Supplementary Table S1 : rho_MY = 0.5, n_reps = 30,000
 # (F, pi_shared, emp_cov, theory_total, rel_err)
 T1 = [
  (30, 0.1, -0.0003731, -0.0003357, 10.02),
@@ -59,7 +61,7 @@ T1 = [
  (10, 1.0, -0.0035006, -0.0033909,  3.14),
 ]
 fig, axes = plt.subplots(1, 2, figsize=(9.6, 4.3))
-fig.suptitle("Figure 5. Targeted validation sweep at non-degenerate shared-instrument proportions",
+fig.suptitle("Supplementary Figure S2. Targeted validation sweep at non-degenerate shared-instrument proportions",
              fontsize=11.5, fontweight="bold", y=0.985)
 
 # --- Panel A: empirical (points) vs analytical (lines)
@@ -104,19 +106,19 @@ ax.grid(axis="y", alpha=0.25, ls=":", lw=0.6)
 for s in ("top", "right"): ax.spines[s].set_visible(False)
 
 fig.tight_layout(rect=[0, 0, 1, 0.94])
-p5 = os.path.join(FIGDIR, "Fig5_pisweep.png")
+p5 = os.path.join(FIGDIR, "FigS2_pisweep.png")
 fig.savefig(p5, dpi=300, bbox_inches="tight", facecolor="white")
 plt.close(fig)
 log(f"[OK] {p5}  ({os.path.getsize(p5)} bytes)")
 
-# ------------------------------------------------------------------ FIGURE 6
+# ------------------------------------------------------------------ SUPPLEMENTARY FIGURE S3
 # Table 3 : widen_% for the 4 TwoSampleMR-validated overlapping trios
 T3 = [("S014", -9.0, 0.0556), ("S273", -0.7, 0.1538),
       ("S137", -5.9, 0.019),  ("S217", -0.1, 0.1111)]
 T3 = sorted(T3, key=lambda r: r[1])           # most negative first
 
 fig, ax = plt.subplots(figsize=(7.6, 3.5))
-fig.suptitle("Figure 6. Change in indirect-effect SE after S10 correction "
+fig.suptitle("Supplementary Figure S3. Change in indirect-effect SE after S10 correction "
              "(TwoSampleMR-validated batch re-estimation)",
              fontsize=11.5, fontweight="bold", y=0.975)
 names = [f"{r[0]}  (\u03c0={r[2]:g})" for r in T3]
@@ -146,15 +148,15 @@ fig.text(0.01, -0.02, "TwoSampleMR-calibrated (cross-validated against the depos
          fontsize=8, color="#999")
 
 fig.tight_layout(rect=[0, 0.02, 1, 0.93])
-p6 = os.path.join(FIGDIR, "Fig6_batch_forest.png")
+p6 = os.path.join(FIGDIR, "FigS3_batch_forest.png")
 fig.savefig(p6, dpi=300, bbox_inches="tight", facecolor="white")
 plt.close(fig)
 log(f"[OK] {p6}  ({os.path.getsize(p6)} bytes)")
 
 log("")
-log("Fig 5 source values (Table 1) : 12 cells, max rel_err = "
+log("Suppl Fig S2 source values (Supplementary Table S1) : 12 cells, max rel_err = "
     f"{max(r[4] for r in T1):.2f}%")
-log("Fig 6 source values (Table 3) : " +
+log("Suppl Fig S3 source values (Table 3) : " +
     ", ".join(f"{n}={v}%" for n, v, _ in T3))
 log("")
 log("DONE.")

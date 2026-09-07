@@ -219,20 +219,32 @@ while i < len(lines):
     # headings
     if raw.startswith('## '):
         htext = raw[3:].strip()
-        # Special: Figure legends section -> embed figures
+        # Special: Figure legends section -> embed each figure directly above its legend,
+        # matching the markdown order and supporting both main (Fig 1-4) and
+        # supplementary (Fig S1-S4) labels.
         if htext.lower().startswith('figure legends'):
             add_heading('Figures', 1)
             import glob
-            figmap = {}
-            for f in glob.glob(os.path.join(FIGDIR, "Fig*.png")):
-                m = re.search(r'Fig(\d+)_', os.path.basename(f))
-                if m: figmap[int(m.group(1))] = f
-            for n in sorted(figmap):
-                pp = doc.add_paragraph(); pp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-                pp.add_run().add_picture(figmap[n], width=Inches(6.0))
-                if n in fig_legend_texts:
-                    add_body(fig_legend_texts[n], indent=False)
             i += 1
+            while i < len(lines):
+                line = lines[i]
+                if line.startswith('## ') or line.strip() == '---':
+                    break
+                fm = re.match(r'^\*\*(?:Supplementary\s+)?Figure\s+(S?\d+)\.\*\*(.*)$', line, re.I)
+                if fm:
+                    label = fm.group(1).strip()            # e.g. "1" or "S1"
+                    fn_pat = f"Fig{label.upper()}_*.png"   # Fig1_*.png or FigS1_*.png
+                    matches = glob.glob(os.path.join(FIGDIR, fn_pat))
+                    if matches:
+                        pp = doc.add_paragraph()
+                        pp.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                        pp.add_run().add_picture(matches[0], width=Inches(6.0))
+                    else:
+                        print(f"[WARN] no image for Figure {label} (pattern {fn_pat})")
+                    add_body(line, indent=False)
+                elif line.strip():
+                    add_body(line, indent=False)
+                i += 1
             continue
         add_heading(htext, 1)
         if htext.lower() == 'references':
