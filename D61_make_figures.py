@@ -3,7 +3,7 @@
 """
 D61_make_figures.py
 Re-render Supplementary Figure S2 (targeted validation sweep) and
-Supplementary Figure S3 (batch SE-change forest) as 300-dpi PNGs
+Supplementary Figure S4 (batch SE-change forest) as 300-dpi PNGs
 (Times New Roman, all-English, Figure-numbered titles) so they can be
 embedded in the submission .docx.
 
@@ -62,7 +62,7 @@ T1 = [
 ]
 fig, axes = plt.subplots(1, 2, figsize=(9.6, 4.3))
 fig.suptitle("Supplementary Figure S2. Targeted validation sweep at non-degenerate shared-instrument proportions",
-             fontsize=11.5, fontweight="bold", y=0.985)
+             fontsize=11.5, fontweight="bold", y=0.965)
 
 # --- Panel A: empirical (points) vs analytical (lines)
 ax = axes[0]
@@ -105,11 +105,11 @@ ax.text(0.02, 0.965, "all 12 cells within the conservative bound B (Sec. 2.3)",
 ax.grid(axis="y", alpha=0.25, ls=":", lw=0.6)
 for s in ("top", "right"): ax.spines[s].set_visible(False)
 
-fig.tight_layout(rect=[0, 0, 1, 0.94])
+fig.tight_layout(rect=[0, 0, 1, 0.92])
 p5 = os.path.join(FIGDIR, "FigS2_pisweep.png")
-fig.savefig(p5, dpi=300, bbox_inches="tight", facecolor="white")
+fig.savefig(p5, dpi=300, bbox_inches="tight", pad_inches=0.22, facecolor="white")
 p5_pdf = os.path.join(FIGDIR, "FigS2_pisweep.pdf")
-fig.savefig(p5_pdf, bbox_inches="tight", facecolor="white")
+fig.savefig(p5_pdf, bbox_inches="tight", pad_inches=0.22, facecolor="white")
 plt.close(fig)
 log(f"[OK] {p5}  ({os.path.getsize(p5)} bytes)")
 log(f"[OK] {p5_pdf}  ({os.path.getsize(p5_pdf)} bytes)")
@@ -123,7 +123,7 @@ T3 = sorted(T3, key=lambda r: r[1])           # most negative first
 fig, ax = plt.subplots(figsize=(7.6, 3.5))
 fig.suptitle("Supplementary Figure S4. Change in indirect-effect SE after S10 correction "
              "(TwoSampleMR-validated batch re-estimation)",
-             fontsize=11.5, fontweight="bold", y=0.975)
+             fontsize=11.5, fontweight="bold", y=0.955)
 names = [f"{r[0]}  (\u03c0={r[2]:g})" for r in T3]
 vals  = [r[1] for r in T3]
 ypos  = range(len(vals))
@@ -150,11 +150,11 @@ fig.text(0.01, -0.02, "TwoSampleMR-calibrated (cross-validated against the depos
                       "truth); all values negative = CI narrows; zero-flip conclusion fully validated.",
          fontsize=8, color="#999")
 
-fig.tight_layout(rect=[0, 0.02, 1, 0.93])
+fig.tight_layout(rect=[0, 0.02, 1, 0.91])
 p6 = os.path.join(FIGDIR, "FigS4_batch_forest.png")
-fig.savefig(p6, dpi=300, bbox_inches="tight", facecolor="white")
+fig.savefig(p6, dpi=300, bbox_inches="tight", pad_inches=0.22, facecolor="white")
 p6_pdf = os.path.join(FIGDIR, "FigS4_batch_forest.pdf")
-fig.savefig(p6_pdf, bbox_inches="tight", facecolor="white")
+fig.savefig(p6_pdf, bbox_inches="tight", pad_inches=0.22, facecolor="white")
 plt.close(fig)
 log(f"[OK] {p6}  ({os.path.getsize(p6)} bytes)")
 log(f"[OK] {p6_pdf}  ({os.path.getsize(p6_pdf)} bytes)")
@@ -162,7 +162,7 @@ log(f"[OK] {p6_pdf}  ({os.path.getsize(p6_pdf)} bytes)")
 log("")
 log("Suppl Fig S2 source values (Supplementary Table S1) : 12 cells, max rel_err = "
     f"{max(r[4] for r in T1):.2f}%")
-log("Suppl Fig S3 source values (Table 3) : " +
+log("Suppl Fig S4 source values (Table 3) : " +
     ", ".join(f"{n}={v}%" for n, v, _ in T3))
 log("")
 log("DONE.")

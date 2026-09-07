@@ -77,15 +77,15 @@ ax.set_xlabel(r"Indirect effect ($\hat{\alpha}\hat{\beta}$) with 95% CI", fontsi
 ax.text(0.98, 0.96, "red = Naive CI (wider); blue = Corrected CI (narrower)",
         transform=ax.transAxes, ha="right", va="top", fontsize=9, color="#555")
 
-fig.suptitle("Figure 4. Indirect effect (\\hat{\\alpha}\\hat{\\beta}) and 95% confidence intervals "
-             "for the BMI \\u2192 waist \\u2192 CHD pathway",
-             fontsize=11.5, fontweight="bold", y=0.985)
+fig.suptitle("Figure 4. Indirect effect ($\\hat{\\alpha}\\hat{\\beta}$) and 95% confidence intervals "
+             "for the BMI → waist → CHD pathway",
+             fontsize=11.5, fontweight="bold", y=0.965)
 
-fig.tight_layout(rect=[0.08, 0, 0.98, 0.94])
+fig.tight_layout(rect=[0.08, 0, 0.98, 0.92])
 p = os.path.join(FIGDIR, "Fig4_realdata.png")
-fig.savefig(p, dpi=300, bbox_inches="tight", facecolor="white")
+fig.savefig(p, dpi=300, bbox_inches="tight", pad_inches=0.22, facecolor="white")
 p_pdf = os.path.join(FIGDIR, "Fig4_realdata.pdf")
-fig.savefig(p_pdf, bbox_inches="tight", facecolor="white")
+fig.savefig(p_pdf, bbox_inches="tight", pad_inches=0.22, facecolor="white")
 plt.close(fig)
 log(f"[OK] {p}  ({os.path.getsize(p)} bytes)")
 log(f"[OK] {p_pdf}  ({os.path.getsize(p_pdf)} bytes)")

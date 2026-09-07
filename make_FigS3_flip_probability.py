@@ -69,18 +69,18 @@ def plot_panel(ax, data, title, ylabel=False):
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10.5, 4.3), sharey=True)
 fig.suptitle('Supplementary Figure S3. Flip probability as a function of true indirect-effect non-centrality',
-             fontsize=12, fontweight='bold', y=0.98)
+             fontsize=12, fontweight='bold', y=0.96)
 
 panelA = subset(sgn=1, rho=0, F=10)
 panelB = subset(sgn=-1, rho=1, F=10)
 plot_panel(ax1, panelA, 'Panel A. Concordant mediation ($\\rho_{MY}=0$, $F=10$)', ylabel=True)
 plot_panel(ax2, panelB, 'Panel B. Discordant mediation / full overlap ($\\rho_{MY}=1$, $F=10$)')
 
-fig.tight_layout(rect=[0, 0, 1, 0.94])
+fig.tight_layout(rect=[0, 0, 1, 0.92])
 out = os.path.join(FIGDIR, 'FigS3_flip_probability.png')
-fig.savefig(out, dpi=300, bbox_inches='tight', facecolor='white')
+fig.savefig(out, dpi=300, bbox_inches='tight', pad_inches=0.22, facecolor='white')
 out_pdf = os.path.join(FIGDIR, 'FigS3_flip_probability.pdf')
-fig.savefig(out_pdf, bbox_inches='tight', facecolor='white')
+fig.savefig(out_pdf, bbox_inches='tight', pad_inches=0.22, facecolor='white')
 plt.close(fig)
 log.info(f"[OK] {out} ({os.path.getsize(out)} bytes)")
 log.info(f"[OK] {out_pdf} ({os.path.getsize(out_pdf)} bytes)")
