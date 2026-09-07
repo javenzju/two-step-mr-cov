@@ -8,13 +8,16 @@ kept in figure/_source/ and are never modified.
 
 Modes
 -----
-* "replace" (Fig 1): the existing non-standard title occupies the top band and
+* "replace" (Fig 1 and Fig S1): the existing title occupies the top band and
   is painted over with white before the standard title is drawn in its place.
-  The band height was located from the row-wise ink profile of the source PNG
-  (ink rows 65-131 of 1700; rows 0-60 and 135-180 are blank), so covering the
-  top 180 px cannot touch figure content.
-* "prepend" (Fig 3, Fig S1): no title exists, so a blank band is added above
-  the untouched source image and the standard title is drawn in it.
+  The per-figure cover heights were located from the row-wise ink profile of
+  the source PNGs (Fig 1: rows 0-180 are safe; Fig S1: rows 0-130 clear the
+  old title and its separator line).
+* "prepend" (Fig 3): no title exists, so a blank band is added above the
+  untouched source image and the standard title is drawn in it.
+
+All sources are composited onto a white background before processing so that
+any transparency in the original PNG does not turn black.
 
 Titles are plain ASCII on purpose: the raster pipeline uses Times New Roman and
 must not depend on Greek or combining-diacritic glyph coverage.
@@ -50,19 +53,17 @@ LINE_SPACING = 1.32
 SIDE_MARGIN = 90        # px
 
 FIGURES = [
-    # name, mode, title
-    ("Fig1_conceptual", "replace",
+    # name, mode, cover_px (replace only), title
+    ("Fig1_conceptual", "replace", 180,
      "Figure 1. Conceptual diagram of two-step (product-method) MR mediation "
      "with overlapping instruments"),
-    ("Fig3_literature", "prepend",
+    ("Fig3_literature", "prepend", 0,
      "Figure 3. Percentage of 333 two-step MR mediation studies at risk of "
      "non-zero covariance under three classification assumptions"),
-    ("FigS1_simulation", "prepend",
+    ("FigS1_simulation", "replace", 130,
      "Supplementary Figure S1. Relative error of the traditional delta-method "
      "SE and empirical 95% CI coverage from bootstrap validation"),
 ]
-
-COVER_PX = 180          # Fig 1: safe top band (ink rows 65-131; blank to 180)
 
 
 def load_font(size):
@@ -99,11 +100,20 @@ def draw_title_band(draw, lines, font, width, top, band_h):
         y += line_h
 
 
-def build(name, mode, title):
+def composite_on_white(src_path):
+    """Return source as RGB composited on white, preserving anti-aliasing."""
+    im = Image.open(src_path)
+    if im.mode in ("RGBA", "LA"):
+        bg = Image.new("RGBA", im.size, (255, 255, 255, 255))
+        return Image.alpha_composite(bg, im.convert("RGBA")).convert("RGB")
+    return im.convert("RGB")
+
+
+def build(name, mode, cover_px, title):
     src = os.path.join(SRCDIR, name + ".png")
     if not os.path.exists(src):
         src = os.path.join(FIGDIR, name + ".png")
-    im = Image.open(src).convert("RGB")
+    im = composite_on_white(src)
     W, H = im.size
     font = load_font(FONT_SIZE)
     lines = wrap(title, font, W - 2 * SIDE_MARGIN)
@@ -111,7 +121,7 @@ def build(name, mode, title):
     band_h = max(150, line_h * len(lines) + 60)
 
     if mode == "replace":
-        band = min(max(band_h, COVER_PX), 320)
+        band = min(max(band_h, cover_px), 320)
         out = im.copy()
         d = ImageDraw.Draw(out)
         d.rectangle([0, 0, W, band], fill=(255, 255, 255))
@@ -131,8 +141,8 @@ def build(name, mode, title):
     log.info("     title: " + " ".join(lines))
 
 
-for name, mode, title in FIGURES:
-    build(name, mode, title)
+for name, mode, cover_px, title in FIGURES:
+    build(name, mode, cover_px, title)
 
 log.info("done")
 print("\nDone. Run export_figures_pdf.py to refresh the PDFs.")

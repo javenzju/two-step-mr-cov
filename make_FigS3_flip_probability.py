@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-make_FigS4_flip_probability.py
-Render Supplementary Figure S4 from the pre-computed 200-cell flip-probability
+make_FigS3_flip_probability.py
+Render Supplementary Figure S3 from the pre-computed 200-cell flip-probability
 surface (T2_flip_prob_20260906.csv). The plotted panels match the manuscript
 caption: Panel A = concordant mediation (sgn=+1, rho_MY=0, F=10); Panel B =
 discordant mediation / full sample overlap (sgn=-1, rho_MY=1, F=10).
-Output: figure/FigS4_flip_probability.png
-Log: log/make_FigS4_flip_probability.log
+Output: figure/FigS3_flip_probability.png and .pdf
+Log: log/make_FigS3_flip_probability.log
 """
 import os, csv, logging
 from datetime import datetime
@@ -21,8 +21,8 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(message)s"
 )
-log = logging.getLogger("make_FigS4_flip_probability")
-log.info("make_FigS4_flip_probability.py — Supplementary Fig S4 flip probability")
+log = logging.getLogger("make_FigS3_flip_probability")
+log.info("make_FigS3_flip_probability.py — Supplementary Fig S3 flip probability")
 
 import matplotlib
 matplotlib.use('Agg')
