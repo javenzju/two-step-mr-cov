@@ -108,8 +108,11 @@ for s in ("top", "right"): ax.spines[s].set_visible(False)
 fig.tight_layout(rect=[0, 0, 1, 0.94])
 p5 = os.path.join(FIGDIR, "FigS2_pisweep.png")
 fig.savefig(p5, dpi=300, bbox_inches="tight", facecolor="white")
+p5_pdf = os.path.join(FIGDIR, "FigS2_pisweep.pdf")
+fig.savefig(p5_pdf, bbox_inches="tight", facecolor="white")
 plt.close(fig)
 log(f"[OK] {p5}  ({os.path.getsize(p5)} bytes)")
+log(f"[OK] {p5_pdf}  ({os.path.getsize(p5_pdf)} bytes)")
 
 # ------------------------------------------------------------------ SUPPLEMENTARY FIGURE S3
 # Table 3 : widen_% for the 4 TwoSampleMR-validated overlapping trios
@@ -118,7 +121,7 @@ T3 = [("S014", -9.0, 0.0556), ("S273", -0.7, 0.1538),
 T3 = sorted(T3, key=lambda r: r[1])           # most negative first
 
 fig, ax = plt.subplots(figsize=(7.6, 3.5))
-fig.suptitle("Supplementary Figure S3. Change in indirect-effect SE after S10 correction "
+fig.suptitle("Supplementary Figure S4. Change in indirect-effect SE after S10 correction "
              "(TwoSampleMR-validated batch re-estimation)",
              fontsize=11.5, fontweight="bold", y=0.975)
 names = [f"{r[0]}  (\u03c0={r[2]:g})" for r in T3]
@@ -148,10 +151,13 @@ fig.text(0.01, -0.02, "TwoSampleMR-calibrated (cross-validated against the depos
          fontsize=8, color="#999")
 
 fig.tight_layout(rect=[0, 0.02, 1, 0.93])
-p6 = os.path.join(FIGDIR, "FigS3_batch_forest.png")
+p6 = os.path.join(FIGDIR, "FigS4_batch_forest.png")
 fig.savefig(p6, dpi=300, bbox_inches="tight", facecolor="white")
+p6_pdf = os.path.join(FIGDIR, "FigS4_batch_forest.pdf")
+fig.savefig(p6_pdf, bbox_inches="tight", facecolor="white")
 plt.close(fig)
 log(f"[OK] {p6}  ({os.path.getsize(p6)} bytes)")
+log(f"[OK] {p6_pdf}  ({os.path.getsize(p6_pdf)} bytes)")
 
 log("")
 log("Suppl Fig S2 source values (Supplementary Table S1) : 12 cells, max rel_err = "
