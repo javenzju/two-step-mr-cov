@@ -80,10 +80,10 @@ def set_first_line_indent(p, pts=24):
 def justify(p):
     p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
 
-# ---------- 4. inline parser (handles **bold** and [n] citations) ----------
+# ---------- 4. inline parser (handles **bold**, *italic* and [n] citations) ----------
 def add_inline(parent, text, bold=False, base_size=12, clip=False):
     """Add runs to parent paragraph handling **bold** and [n] (superscript)."""
-    pat = re.compile(r'(\*\*[^*]+\*\*|\[\d+\])')
+    pat = re.compile(r'(\*\*[^*]+\*\*|\*[^*]+\*|\[\d+\])')
     pos = 0
     for m in pat.finditer(text):
         if pos < m.start():
@@ -94,6 +94,10 @@ def add_inline(parent, text, bold=False, base_size=12, clip=False):
         if tok.startswith('**'):
             r = parent.add_run(tok[2:-2]); r.bold = True
             r.font.name = 'Times New Roman'; r.font.size = Pt(base_size)
+        elif tok.startswith('*'):   # single-asterisk italic
+            r = parent.add_run(tok[1:-1]); r.italic = True
+            r.font.name = 'Times New Roman'; r.font.size = Pt(base_size)
+            r.bold = bold
         else:  # [n]
             r = parent.add_run(tok[1:-1])
             r.font.name = 'Times New Roman'; r.font.size = Pt(base_size)
@@ -327,7 +331,9 @@ while i < len(lines):
 
     # author / affiliation / correspondence (centered, not justified)
     if raw.startswith('**Authors:**') or raw.startswith('**Affiliations:**') or raw.startswith('**Correspondence:**'):
-        add_centered(raw, size=11)
+        _p = doc.add_paragraph()
+        _p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        add_inline(_p, raw, base_size=11)
         i += 1
         continue
 
