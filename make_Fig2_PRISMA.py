@@ -38,7 +38,7 @@ plt.rcParams['ytick.left'] = False
 
 fig, ax = plt.subplots(figsize=(10, 8))
 ax.set_xlim(0, 10)
-ax.set_ylim(0, 10)
+ax.set_ylim(1.85, 10)   # bottom cropped to just below the note (2 lines below diagram)
 ax.set_aspect('equal')
 ax.axis('off')
 
@@ -95,8 +95,8 @@ arrow(7.5, 4.075, 7.5, 3.525)
 # Excluded-error detail
 side_label(3.8, 4.5, '5 trios excluded:\naccession/network errors', fontsize=9)
 
-# Bottom note
-ax.text(5, 0.7, 'The audit was confined to PubMed and is described fully in the Methods and Supplementary Table S3.',
+# Note, placed two line-heights below the bottom of the main diagram
+ax.text(5, 2.32, 'The audit was confined to PubMed and is described fully in the Methods and Supplementary Table S3.',
         ha='center', va='center', fontsize=9, style='italic')
 
 fig.tight_layout()

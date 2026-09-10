@@ -5,7 +5,10 @@ Build submission-ready .docx from D61_论文终稿_20260906.md
 - Body paragraphs: justified, first-line indent (2 chars ~ 24pt)
 - Citations [n] rendered as superscript, in order, before period (already in source)
 - Display equations rendered offline via matplotlib mathtext (stix -> Times-like)
-- 6 figures embedded (centered) in a Figures section; 4 tables inline
+- figures are supplied as SEPARATE files; only their legends appear here, at
+  the end of the manuscript (no image is embedded)
+- every table is rendered as a classic three-line (booktabs) table: solid top
+  and bottom rules plus a solid rule under the header, no vertical rules
 """
 import re, os
 import matplotlib
@@ -167,11 +170,42 @@ def add_equation(idx):
     p.add_run().add_picture(eq_paths[idx-1], width=Inches(5.6))
     return p
 
+def _set_three_line_borders(tbl):
+    """Classic three-line (booktabs) table style.
+
+    A solid rule on the top, a solid rule under the header row, and a solid
+    rule at the bottom. No vertical rules, no side borders and no interior
+    horizontal rules between data rows.
+    """
+    tblPr = tbl._tbl.tblPr
+    borders = OxmlElement('w:tblBorders')
+    spec = [('top', 'single', 12), ('left', 'none', 0), ('bottom', 'single', 12),
+            ('right', 'none', 0), ('insideH', 'none', 0), ('insideV', 'none', 0)]
+    for edge, val, sz in spec:
+        e = OxmlElement('w:' + edge)
+        e.set(qn('w:val'), val)
+        e.set(qn('w:sz'), str(sz))
+        e.set(qn('w:space'), '0')
+        e.set(qn('w:color'), 'auto')
+        borders.append(e)
+    tblPr.append(borders)
+    # solid rule under the header row
+    for cell in tbl.rows[0].cells:
+        tcPr = cell._tc.get_or_add_tcPr()
+        tcB = OxmlElement('w:tcBorders')
+        bottom = OxmlElement('w:bottom')
+        bottom.set(qn('w:val'), 'single')
+        bottom.set(qn('w:sz'), '6')
+        bottom.set(qn('w:space'), '0')
+        bottom.set(qn('w:color'), 'auto')
+        tcB.append(bottom)
+        tcPr.append(tcB)
+
+
 def add_table(rows, is_caption_preceding=None):
     # rows: list of list of str; first is header
     ncol = max(len(r) for r in rows)
     tbl = doc.add_table(rows=1, cols=ncol)
-    tbl.style = 'Table Grid'
     tbl.alignment = WD_TABLE_ALIGNMENT.CENTER
     hdr = tbl.rows[0].cells
     for j, v in enumerate(rows[0]):
@@ -185,6 +219,7 @@ def add_table(rows, is_caption_preceding=None):
             cells[j].text = ''
             rp = cells[j].paragraphs[0].add_run(val)
             rp.font.name='Times New Roman'; rp.font.size = Pt(9.5)
+    _set_three_line_borders(tbl)
     return tbl
 
 def shade_header(tbl):
@@ -234,30 +269,20 @@ while i < len(lines):
     # headings
     if raw.startswith('## '):
         htext = raw[3:].strip()
-        # Special: Figure legends section -> embed each figure directly above its legend,
-        # matching the markdown order and supporting both main (Fig 1-4) and
-        # supplementary (Fig S1-S4) labels.
+        # Figure legends section. The figures themselves are supplied as
+        # SEPARATE files (this journal requires figures and manuscript to be
+        # separate), so nothing is embedded here: the manuscript keeps only the
+        # legend text, collected at the end of the manuscript.
         if htext.lower().startswith('figure legends'):
-            add_heading('Figures', 1)
-            import glob
+            add_heading('Figure legends', 1)
+            add_body('Figures are provided as separate electronic files '
+                     '(Fig. 1-4 and Supplementary Fig. S1-S4).', indent=False)
             i += 1
             while i < len(lines):
                 line = lines[i]
                 if line.startswith('## ') or line.strip() == '---':
                     break
-                fm = re.match(r'^\*\*(?:Supplementary\s+)?Figure\s+(S?\d+)\.\*\*(.*)$', line, re.I)
-                if fm:
-                    label = fm.group(1).strip()            # e.g. "1" or "S1"
-                    fn_pat = f"Fig{label.upper()}_*.png"   # Fig1_*.png or FigS1_*.png
-                    matches = glob.glob(os.path.join(FIGDIR, fn_pat))
-                    if matches:
-                        pp = doc.add_paragraph()
-                        pp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-                        pp.add_run().add_picture(matches[0], width=Inches(6.0))
-                    else:
-                        print(f"[WARN] no image for Figure {label} (pattern {fn_pat})")
-                    add_body(line, indent=False)
-                elif line.strip():
+                if line.strip():
                     add_body(line, indent=False)
                 i += 1
             continue

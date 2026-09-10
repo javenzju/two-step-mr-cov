@@ -53,16 +53,19 @@ LINE_SPACING = 1.32
 SIDE_MARGIN = 90        # px
 
 FIGURES = [
-    # name, mode, cover_px (replace only), title
-    ("Fig1_conceptual", "replace", 180,
+    # name, mode, cover_px (replace only), title, diagram_top, gap_lines
+    #   "replace_gap": clear the empty top margin down to diagram_top and place
+    #   the title so its bottom is `gap_lines` line-heights above the diagram,
+    #   then trim the surplus margin above the title.
+    ("Fig1_conceptual", "replace_gap", 180,
      "Figure 1. Conceptual diagram of two-step (product-method) MR mediation "
-     "with overlapping instruments"),
+     "with overlapping instruments", 464, 2),
     ("Fig3_literature", "prepend", 0,
      "Figure 3. Percentage of 333 two-step MR mediation studies at risk of "
-     "non-zero covariance under three classification assumptions"),
+     "non-zero covariance under three classification assumptions", 0, 0),
     ("FigS1_simulation", "replace", 130,
      "Supplementary Figure S1. Relative error of the traditional delta-method "
-     "SE and empirical 95% CI coverage from bootstrap validation"),
+     "SE and empirical 95% CI coverage from bootstrap validation", 0, 0),
 ]
 
 
@@ -109,7 +112,7 @@ def composite_on_white(src_path):
     return im.convert("RGB")
 
 
-def build(name, mode, cover_px, title):
+def build(name, mode, cover_px, title, diagram_top=0, gap_lines=0):
     src = os.path.join(SRCDIR, name + ".png")
     if not os.path.exists(src):
         src = os.path.join(FIGDIR, name + ".png")
@@ -119,6 +122,7 @@ def build(name, mode, cover_px, title):
     lines = wrap(title, font, W - 2 * SIDE_MARGIN)
     line_h = int(FONT_SIZE * LINE_SPACING)
     band_h = max(150, line_h * len(lines) + 60)
+    block_h = line_h * len(lines)
 
     if mode == "replace":
         band = min(max(band_h, cover_px), 320)
@@ -126,6 +130,22 @@ def build(name, mode, cover_px, title):
         d = ImageDraw.Draw(out)
         d.rectangle([0, 0, W, band], fill=(255, 255, 255))
         draw_title_band(d, lines, font, W, 0, band)
+    elif mode == "replace_gap":
+        # The whole strip above the main diagram is empty margin in the source,
+        # so it can be cleared safely. Place the title so that its bottom sits
+        # exactly `gap_lines` line-heights above the diagram, then trim the
+        # freed margin above the title so the figure reads as
+        # [margin][title][gap][diagram] — consistent with the other figures.
+        out = im.copy()
+        d = ImageDraw.Draw(out)
+        d.rectangle([0, 0, W, diagram_top], fill=(255, 255, 255))
+        gap_px = int(gap_lines * line_h)
+        top = diagram_top - gap_px - block_h
+        if top < 0:
+            top = 0
+        draw_title_band(d, lines, font, W, top, block_h)
+        crop_top = max(0, top - 45)           # ~0.75-line top margin
+        out = out.crop((0, crop_top, W, H))
     else:  # prepend
         out = Image.new("RGB", (W, H + band_h), (255, 255, 255))
         out.paste(im, (0, band_h))
@@ -141,8 +161,8 @@ def build(name, mode, cover_px, title):
     log.info("     title: " + " ".join(lines))
 
 
-for name, mode, cover_px, title in FIGURES:
-    build(name, mode, cover_px, title)
+for entry in FIGURES:
+    build(*entry)
 
 log.info("done")
 print("\nDone. Run export_figures_pdf.py to refresh the PDFs.")
