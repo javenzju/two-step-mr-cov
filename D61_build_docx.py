@@ -191,6 +191,15 @@ def shade_header(tbl):
     pass
 
 # ---------- 5. parse markdown ----------
+def _table_sep_below(lines, idx):
+    """True if a markdown table separator is at idx, skipping blank lines."""
+    k = idx
+    while k < len(lines) and not lines[k].strip():
+        k += 1
+    return k < len(lines) and re.match(r'^\s*\|[\s:|-]+\|\s*$', lines[k]) is not None
+
+
+
 i = 0
 state = 'body'
 fig_legend_texts = {}  # N -> legend paragraph text
@@ -284,14 +293,21 @@ while i < len(lines):
         continue
 
     # table detection
-    if raw.strip().startswith('|') and i+1 < len(lines) and re.match(r'^\s*\|[\s:|-]+\|\s*$', lines[i+1]):
+    if raw.strip().startswith('|') and _table_sep_below(lines, i+1):
         # caption: previous non-empty line starting with '**Table' or 'Table'
-        # parse rows
+        # parse rows, tolerating blank lines inside the table block
         tbl_rows = []
-        while i < len(lines) and lines[i].strip().startswith('|'):
-            cells = [c.strip() for c in lines[i].strip().strip('|').split('|')]
-            tbl_rows.append(cells)
-            i += 1
+        j = i
+        while j < len(lines):
+            if lines[j].strip().startswith('|'):
+                cells = [c.strip() for c in lines[j].strip().strip('|').split('|')]
+                tbl_rows.append(cells)
+                j += 1
+            elif not lines[j].strip() and j+1 < len(lines) and lines[j+1].strip().startswith('|'):
+                j += 1
+            else:
+                break
+        i = j
         # tbl_rows[1] is separator
         header = tbl_rows[0]
         data = tbl_rows[2:]
