@@ -35,3 +35,5 @@ code/kappa_chenyan_task/fulltexts/
 code/kappa_chenyan_task/邮件_陈燕_盲态编码提醒.md
 # Obsolete SVG conversion attempt (superseded by direct matplotlib re-render)
 convert_fig_svg_to_png.py
+temp/
+log/
