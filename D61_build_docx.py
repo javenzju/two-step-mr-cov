@@ -127,8 +127,10 @@ def add_heading(text, level=1):
     run.bold = True
     if level == 1:
         run.font.size = Pt(13)
-    else:
+    elif level == 2:
         run.font.size = Pt(12)
+    else:
+        run.font.size = Pt(11.5)
     return p
 
 def add_centered(text, size=11, bold=False, italic=False):
@@ -253,6 +255,11 @@ while i < len(lines):
         add_heading(htext, 1)
         if htext.lower() == 'references':
             in_references = True
+        i += 1
+        continue
+
+    if raw.startswith('#### '):
+        add_heading(raw[5:].strip(), 3)
         i += 1
         continue
 
