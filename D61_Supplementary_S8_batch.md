@@ -100,7 +100,7 @@ Companion to §3.5 of the main manuscript. All numbers are taken directly from t
 
 ---
 
-## Table S5. Empirical ρ_MY for the six overlapping trios (companion to §3.5.1, main manuscript Table 3b)
+## Table S5. Empirical ρ_MY for the six overlapping trios (companion to §3.5, main manuscript Table 2c)
 
 **Why this table exists.** In the main manuscript, ρ_MY is treated as a sensitivity parameter (0 by default). A reviewer would reasonably ask what the ρ_MY distribution actually is in the real overlapping cases. This table answers that with data, using the harmonized per-SNP effect sizes already pulled by the Phase-B pipeline: β_ZM (mediator GWAS), β_ZY (outcome GWAS), and β_ZX (exposure GWAS), all aligned to the OpenGWAS reference allele.
 
