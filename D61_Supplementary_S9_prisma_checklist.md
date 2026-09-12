@@ -1,4 +1,4 @@
-# Supplementary Table S3 — PRISMA 2020 checklist (completed)
+# Supplementary Table S2 — PRISMA 2020 checklist (completed)
 
 Completed PRISMA 2020 checklist for the literature audit reported in this manuscript
 (Page et al. *BMJ* 2021;372:n71). The audit is a methodological characterization of the
@@ -14,7 +14,7 @@ not a pooled-effect meta-analysis; items that do not apply are marked N/A with a
 | 4 | Objectives | Yes | §1 / Abstract | Quantify prevalence + derive correction |
 | 5 | Eligibility criteria | Yes | Codebook S1; §2 | Design-type inclusion/exclusion rules |
 | 6 | Information sources | Yes | §2 Literature coding | PubMed; date 2026-08-31; single database (Lim 4) |
-| 7 | Search strategy | Yes | Codebook S1; Supp Table S3 note | Nine PubMed query strings provided |
+| 7 | Search strategy | Yes | Codebook S1; Supp Table S2 note | Nine PubMed query strings provided |
 | 8 | Selection process | Yes | §2; Codebook S1 | Two-pass coding + blinded second pass |
 | 9 | Data collection process | Yes | §2; Codebook S1 | Structured coding sheet, sealed key |
 | 10 | Data items | Yes | Codebook S1 | design_type, IV_selection, risk_flag |

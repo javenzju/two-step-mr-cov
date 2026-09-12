@@ -96,7 +96,7 @@ arrow(7.5, 4.075, 7.5, 3.525)
 side_label(3.8, 4.5, '5 trios excluded:\naccession/network errors', fontsize=9)
 
 # Note, placed two line-heights below the bottom of the main diagram
-ax.text(5, 2.32, 'The audit was confined to PubMed and is described fully in the Methods and Supplementary Table S3.',
+ax.text(5, 2.32, 'The audit was confined to PubMed and is described fully in the Methods and Supplementary Table S2.',
         ha='center', va='center', fontsize=9, style='italic')
 
 fig.tight_layout()

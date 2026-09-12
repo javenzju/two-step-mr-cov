@@ -1,4 +1,4 @@
-# Supplementary Table S4. Phase-B batch re-estimation of published two-step MR mediation studies
+# Supplementary Table S3. Phase-B batch re-estimation of published two-step MR mediation studies
 
 Companion to §3.5 of the main manuscript. All numbers are taken directly from the Phase-B pipeline outputs `M4b_pishared_20260904.csv` (π_shared screen) and `M4b_stage2_recompute_20260904.csv` (per-candidate re-estimation).
 
@@ -10,7 +10,7 @@ Companion to §3.5 of the main manuscript. All numbers are taken directly from t
 
 - **Sign convention.** widen_% < 0 means the S10-corrected indirect-effect SE is smaller (narrower CI) than the naive delta-method SE.
 
-## Table S4.1. π_shared screen of all 70 Phase-A candidates
+## Table S3.1. π_shared screen of all 70 Phase-A candidates
 
 | study_id | n_X | n_M | n_shared | π_shared | F_X | status |
 |---|---|---|---|---|---|---|
@@ -87,7 +87,7 @@ Companion to §3.5 of the main manuscript. All numbers are taken directly from t
 
 **Summary:** 70 screened; 42 analyzable (usable instruments for both exposure and mediator, n_X ≥ 1 and n_M ≥ 1); 28 not analyzable (no EUR-clumped instruments returned, predominantly non-European, UKB non-EUR, or specialized protein/QTL traits). Among the 42 analyzable, 8 (19.0%) had genuine SNP overlap (π_shared > 0); the remaining 34 used effectively disjoint instrument sets.
 
-## Table S4.2. Re-estimation of the 4 of 6 adequately powered overlapping studies (TwoSampleMR-validated, ρ_MY = 0)
+## Table S3.2. Re-estimation of the 4 of 6 adequately powered overlapping studies (TwoSampleMR-validated, ρ_MY = 0)
 
 | study_id | exposure | mediator | outcome | n_X | n_M | n_shared | π_shared | α̂ (SE_α) | β̂ (SE_β) | indirect | SE_naive | SE_corr | widen_% | naive_sig | corr_sig | flip |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -100,7 +100,7 @@ Companion to §3.5 of the main manuscript. All numbers are taken directly from t
 
 ---
 
-## Table S5. Empirical ρ_MY for the six overlapping trios (companion to §3.5, main manuscript Table 2c)
+## Table S4. Empirical ρ_MY for the six overlapping trios (companion to §3.5, main manuscript Table 2c)
 
 **Why this table exists.** In the main manuscript, ρ_MY is treated as a sensitivity parameter (0 by default). A reviewer would reasonably ask what the ρ_MY distribution actually is in the real overlapping cases. This table answers that with data, using the harmonized per-SNP effect sizes already pulled by the Phase-B pipeline: β_ZM (mediator GWAS), β_ZY (outcome GWAS), and β_ZX (exposure GWAS), all aligned to the OpenGWAS reference allele.
 
