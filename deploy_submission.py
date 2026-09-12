@@ -166,7 +166,7 @@ def zenodo_upload(token, proxy=None):
     # 1) 创建空 deposit
     log("  创建 deposit ...")
     st, dep = _http_json("POST", f"{ZENODO_API}/deposit/depositions",
-                         token=token, data=b"{}", timeout=30, proxy=proxy)
+                         token=token, data={}, timeout=30, proxy=proxy)
     if st not in (200, 201):
         raise RuntimeError(f"创建 deposit 失败 HTTP {st}: {dep}")
     dep_id = dep["id"]
