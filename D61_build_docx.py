@@ -155,10 +155,11 @@ def add_bullet(text, numbered=False):
     return p
 
 def add_ref_paragraph(text):
+    # Journal style: the reference list is justified with a two-character
+    # first-line indent (no hanging indent), matching the body-text convention.
     p = doc.add_paragraph()
-    p.paragraph_format.left_indent = Cm(0.74)
-    p.paragraph_format.first_line_indent = Cm(-0.74)
-    p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    p.paragraph_format.first_line_indent = Pt(20)   # 2 chars at the 10 pt ref size
+    p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     add_inline(p, text, base_size=10)
     return p
 
@@ -340,7 +341,7 @@ while i < len(lines):
         add_table([header] + data)
         if pending_table_caption:
             cap = doc.add_paragraph()
-            cap.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
+            cap.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
             add_inline(cap, pending_table_caption, base_size=10)
             cap.runs[0].italic = True
             pending_table_caption = None
@@ -403,6 +404,27 @@ while i < len(lines):
     i += 1
 
 # ---------- 6. finalize ----------
+def _force_times(document):
+    """Guarantee Times New Roman on EVERY run (ascii / hAnsi / eastAsia / cs),
+    so the whole manuscript is typographically uniform regardless of which
+    paragraph style happens to be in force (List Bullet, List Number, ...)."""
+    def _fix(runs):
+        for r in runs:
+            r.font.name = 'Times New Roman'
+            rPr = r._element.get_or_add_rPr()
+            rf = rPr.get_or_add_rFonts()
+            for attr in ('w:ascii', 'w:hAnsi', 'w:eastAsia', 'w:cs'):
+                rf.set(qn(attr), 'Times New Roman')
+    for p in document.paragraphs:
+        _fix(p.runs)
+    for t in document.tables:
+        for row in t.rows:
+            for cell in row.cells:
+                for p in cell.paragraphs:
+                    _fix(p.runs)
+
+_force_times(doc)
+
 doc.core_properties.title = "Correcting for instrument overlap in two-step summary-data Mendelian randomization mediation"
 doc.core_properties.author = "Yan Chen, Jianfeng Wang"
 

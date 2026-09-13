@@ -21,7 +21,7 @@ We submit our manuscript entitled **"Correcting for instrument overlap in two-st
 
 **Limitations we disclose up front.** The real-data re-estimation is restricted to the subset resolvable to public, EUR-clumped GWAS accessions and is therefore a lower-bound characterization of the resolvable, EUR-ancestry literature rather than an estimate generalizable to the full audited corpus. Inter-coder reliability comes from a second blinded coding pass by co-author C. Yan (C.Y.), independent of the original coder (J.W., excluded) and blind to the sealed answer key and hypothesis — not from a fully independent external rater (100% observed agreement on `design_type`; κ = 0.44 on `IV_selection_strategy`; κ = 0.78 on `reports_overlap_risk`). The blind re-coding template, sealed answer key, filled sheet and `compute_kappa_2nd.py` are deposited so an independent collaborator can reproduce or supersede this κ in one command. We will commission a fully independent external rater (not a co-author) to re-code the 50-study stratified sample in revision if the Editor requests it; the deposited packet makes that a one-command reproduction. The audit searched PubMed only. We note that the lower-reliability field carries no reported result: the 39.3% headline rests only on `design_type` (complete agreement) and on the *absence* of overlap-handling disclosure, so it is conservative with respect to coding error.
 
-**Accompanying items.** Completed PRISMA 2020 checklist (Supplementary Table S2); STROBE-MR reporting checklist; Supplementary Methods S1–S9 and Supplementary Tables S1, S5; figures supplied as vector PDF; code and data deposited in a public GitHub repository. We request publication under the **subscription model (no APC)**.
+**Accompanying items.** Completed PRISMA 2020 checklist (Supplementary Table S2); STROBE-MR reporting checklist; Supplementary Methods S1–S8 and Supplementary Tables S1–S4; figures supplied as vector PDF; code and data deposited in a public GitHub repository. We request publication under the **subscription model (no APC)**.
 
 We declare no competing interests. Thank you for your consideration.
 
@@ -34,9 +34,10 @@ Correspondence: Jianfeng Wang — 2001m@163.com
 
 *Internal notes (verify before submission):*
 1. EiC confirmed as **Albert Hofman, MD, PhD** (Erasmus MC, Rotterdam; Harvard University) from the EJE masthead, September 2026.
-2. EJE requires a structured abstract of 150–250 words — our abstract is **238 words** with Background / Methods / Results / Conclusions. Keywords: 6 (EJE requires 4–6).
-3. EJE has **no stated word limit for Original Articles** (limits apply only to Short Communications, 2000 words, and Letters, 1000 words). Current main text is ~5,660 words; expect a possible request to shorten at revision.
+2. EJE requires a structured abstract of 150–250 words — our abstract is **232 words** with Background / Methods / Results / Conclusions. Keywords: 6 (EJE requires 4–6).
+3. EJE has **no stated word limit for Original Articles** (limits apply only to Short Communications, 2000 words, and Letters, 1000 words). Current main text is ~6,100 words of running text (~6,400 including table captions); expect a possible request to shorten at revision.
 4. Do **not** include Highlights or a Graphical Abstract — those are Elsevier/JCE requirements, not EJE.
 5. The "39.3% / 6.5% / 0–43.4% / 10.4%" figures must stay exactly as in the manuscript.
 6. Replace the Zenodo DOI placeholder `10.5281/zenodo.XXXXXXX` in Data availability with the minted DOI once available.
 7. If suggesting reviewers is permitted, add 2–3 names with affiliation and e-mail before submission; consider MR-methods researchers not connected to the authors' institution.
+8. Journal-fit check against the CAS 2025 partition table: **EJE = 2区** (Top 否; was 1区 in 2023), **IJE = 2区 and Top 是**, **Genetic Epidemiology = 4区** (Top 否, i.e. *not* 二区). All three are hybrid/subscription journals, so **no APC** under the subscription model; the optional open-access APC is ≈ US$3,845 (IJE, OUP) and ≈ US$4,150 (Genetic Epidemiology, Wiley). EJE therefore satisfies a 二区 requirement at zero cost, which is why it remains the primary target.
