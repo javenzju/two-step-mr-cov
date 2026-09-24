@@ -4,23 +4,20 @@ Build submission-ready .docx from D61_论文终稿_20260906.md
 - Times New Roman throughout (body 12pt)
 - Body paragraphs: justified, first-line indent (2 chars ~ 24pt)
 - Citations [n] rendered as superscript, in order, before period (already in source)
-- Display equations rendered offline via matplotlib mathtext (stix -> Times-like)
+- Display equations inserted as native Word OMML (editable, not raster images)
 - figures are supplied as SEPARATE files; only their legends appear here, at
   the end of the manuscript (no image is embedded)
 - every table is rendered as a classic three-line (booktabs) table: solid top
   and bottom rules plus a solid rule under the header, no vertical rules
 """
 import re, os
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-from matplotlib import font_manager
+# (display equations are native OMML; matplotlib no longer needed)
 from docx import Document
 from docx.shared import Pt, Cm, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
-from docx.oxml import OxmlElement
+from docx.oxml import OxmlElement, parse_xml
 
 ROOT = r"D:\WorkBuddy\两步法MR中介\⑤ 投稿文件_20260904"
 SRC = os.path.join(ROOT, "D61_论文终稿_20260906.md")
@@ -29,42 +26,61 @@ OUT = os.path.join(ROOT, "D61_论文终稿_20260906.docx")
 EQDIR = os.path.join(ROOT, "figure")
 os.makedirs(EQDIR, exist_ok=True)
 
-# ---------- 1. render display equations to PNG ----------
-import glob as _glob
-_times_candidates = [
-    r'C:\Windows\Fonts\times.ttf', r'C:\Windows\Fonts\timesbd.ttf',
-    r'C:\Windows\Fonts\timesi.ttf', r'C:\Windows\Fonts\TIMES.TTF',
+# ---------- 1. native Word (OMML) display equations ----------
+NS_M = 'http://schemas.openxmlformats.org/officeDocument/2006/math'
+
+def _mr(txt, plain=False):
+    sty = '<m:rPr><m:sty m:val="p"/></m:rPr>' if plain else ''
+    return f'<m:r>{sty}<m:t>{txt}</m:t></m:r>'
+
+def _acc(base):
+    return (f'<m:acc><m:accPr><m:chr m:val="^"/></m:accPr>'
+            f'<m:e>{base}</m:e></m:acc>')
+
+def _sup(base, sup):
+    return f'<m:sSup><m:e>{base}</m:e><m:sup>{sup}</m:sup></m:sSup>'
+
+def _sub(base, sub):
+    return f'<m:sSub><m:e>{base}</m:e><m:sub>{sub}</m:sub></m:sSub>'
+
+def _frac(num, den):
+    return f'<m:f><m:num>{num}</m:num><m:den>{den}</m:den></m:f>'
+
+def _rad(base):
+    return (f'<m:rad><m:radPr/><m:deg><m:r><m:t>2</m:t></m:r></m:deg>'
+            f'<m:e>{base}</m:e></m:rad>')
+
+def _delim(content):
+    return (f'<m:d><m:dPr><m:begChr m:val="|"/><m:endChr m:val="|"/></m:dPr>'
+            f'<m:e>{content}</m:e></m:d>')
+
+# shared tokens (Greek letters render as math-italic; function/label words upright)
+_A = _mr('\u03b1'); _B = _mr('\u03b2'); _R = _mr('\u03c1'); _P = _mr('\u03c0'); _F = _mr('F')
+_AH = _acc(_A); _BH = _acc(_B)
+_VAR = _mr('Var', plain=True); _COV = _mr('Cov', plain=True); _TWO = _mr('2', plain=True)
+_LP = _mr('('); _RP = _mr(')'); _CM = _mr(','); _AP = _mr('\u2248'); _PL = _mr('+'); _EQ = _mr('=')
+_shared = _mr('shared', plain=True); _MY = _mr('MY', plain=True); _ovlp = _mr('overlap', plain=True)
+
+_OMML = [
+    # 1. Var(ab) ~= b^2 Var(a) + a^2 Var(b)
+    (_VAR + _LP + _AH + _BH + _RP + _AP
+     + _sup(_BH, _TWO) + _VAR + _LP + _AH + _RP
+     + _PL + _sup(_AH, _TWO) + _VAR + _LP + _BH + _RP),
+    # 2. Cov(a,b) = Cov_shared + Cov_overlap
+    (_COV + _LP + _AH + _CM + _BH + _RP + _EQ
+     + _sub(_COV, _shared) + _PL + _sub(_COV, _ovlp)),
+    # 3. Var(ab) ~= b^2 Var(a) + a^2 Var(b) + 2ab Cov(a,b)
+    (_VAR + _LP + _AH + _BH + _RP + _AP
+     + _sup(_BH, _TWO) + _VAR + _LP + _AH + _RP
+     + _PL + _sup(_AH, _TWO) + _VAR + _LP + _BH + _RP
+     + _PL + _TWO + _AH + _BH + _COV + _LP + _AH + _CM + _BH + _RP),
+    # 4. B(F,rho_MY,pi_shared) = 2/F + 2|rho_MY|pi_shared/sqrt(F) + rho_MY^2 pi_shared/F
+    (_mr('B', plain=True) + _LP + _F + _CM
+     + _sub(_R, _MY) + _CM + _sub(_P, _shared) + _RP + _EQ
+     + _frac(_TWO, _F)
+     + _PL + _frac(_TWO + _delim(_sub(_R, _MY)) + _sub(_P, _shared), _rad(_F))
+     + _PL + _frac(_sup(_sub(_R, _MY), _TWO) + _sub(_P, _shared), _F)),
 ]
-_times_found = [p for p in _times_candidates if os.path.exists(p)]
-if _times_found:
-    for p in _times_found:
-        try: font_manager.fontManager.addfont(p)
-        except Exception: pass
-    plt.rcParams['mathtext.fontset'] = 'custom'
-    plt.rcParams['mathtext.rm'] = 'Times New Roman'
-    plt.rcParams['mathtext.it'] = 'Times New Roman'
-    plt.rcParams['mathtext.bf'] = 'Times New Roman'
-    plt.rcParams['mathtext.cal'] = 'Times New Roman'
-    plt.rcParams['mathtext.sf'] = 'Times New Roman'
-    plt.rcParams['mathtext.tt'] = 'Times New Roman'
-    plt.rcParams['font.family'] = 'Times New Roman'
-else:
-    plt.rcParams['mathtext.fontset'] = 'stix'
-EQUATIONS = [
-    r"\mathrm{Var}(\hat{\alpha}\hat{\beta}) \approx \hat{\beta}^{2}\,\mathrm{Var}(\hat{\alpha}) + \hat{\alpha}^{2}\,\mathrm{Var}(\hat{\beta})",
-    r"\mathrm{Cov}(\hat{\alpha},\hat{\beta}) = \mathrm{Cov}_{\mathrm{shared}} + \mathrm{Cov}_{\mathrm{overlap}}",
-    r"\mathrm{Var}(\hat{\alpha}\hat{\beta}) \approx \hat{\beta}^{2}\,\mathrm{Var}(\hat{\alpha}) + \hat{\alpha}^{2}\,\mathrm{Var}(\hat{\beta}) + 2\hat{\alpha}\hat{\beta}\,\mathrm{Cov}(\hat{\alpha},\hat{\beta})",
-    r"B(F,\rho_{MY},\pi_{\mathrm{shared}}) = \frac{2}{F} + \frac{2|\rho_{MY}|\pi_{\mathrm{shared}}}{\sqrt{F}} + \frac{\rho_{MY}^{2}\pi_{\mathrm{shared}}}{F}",
-]
-eq_paths = []
-for i, tex in enumerate(EQUATIONS, 1):
-    p = os.path.join(EQDIR, f"eq{i}.png")
-    fig = plt.figure(figsize=(6.6, 0.7))
-    fig.text(0.5, 0.5, f"${tex}$", ha='center', va='center', fontsize=14)
-    fig.savefig(p, dpi=300, bbox_inches='tight', transparent=True)
-    plt.close(fig)
-    eq_paths.append(p)
-print("equations rendered:", len(eq_paths))
 
 # ---------- 2. read source ----------
 lines = open(SRC, encoding='utf-8').read().split('\n')
@@ -168,7 +184,8 @@ def add_equation(idx):
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p.paragraph_format.space_before = Pt(6)
     p.paragraph_format.space_after = Pt(6)
-    p.add_run().add_picture(eq_paths[idx-1], width=Inches(5.6))
+    xml = f'<m:oMath xmlns:m="{NS_M}">{_OMML[idx-1]}</m:oMath>'
+    p._p.append(parse_xml(xml))
     return p
 
 def _set_three_line_borders(tbl):
