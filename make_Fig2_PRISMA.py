@@ -84,12 +84,12 @@ side_label(3.8, 5.9, '220 excluded:\nno resolvable EUR-clumped\nexposure→media
 
 # Valid trios after errors
 box(7.5, 4.5, 4.0, 0.85,
-    'Re-estimated trios\n108 valid after 4 accession/\nnetwork errors', '#c9daf8')
+    'Re-estimated trios\n108 succeeded on the first pass;\nS255 recovered later', '#c9daf8')
 arrow(7.5, 5.475, 7.5, 4.925)
 
 # Overlap result
 box(7.5, 3.1, 4.0, 0.85,
-    'Genuine instrument overlap\n7 trios (6.5%; 95% CI 3.2–12.8%)\nwith shared step-1 / step-2 SNPs', '#d9ead3')
+    'Genuine instrument overlap\n5 trios (4.6%; 95% CI 2.0-10.4%);\n+ 2 degenerate (exposure = mediator)', '#d9ead3')
 arrow(7.5, 4.075, 7.5, 3.525)
 
 # Excluded-error detail

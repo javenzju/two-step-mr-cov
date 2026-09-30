@@ -99,7 +99,7 @@ ax.set_ylim(0.9, 1.75)
 ax.set_title("B  Variance calibration", loc="left")
 ax.legend(fontsize=7.5, frameon=False, loc="upper left")
 ax.grid(alpha=0.25, lw=0.5)
-ax.annotate("naive inflates the SD\nby up to ~65% at full overlap",
+ax.annotate("naive inflates the SD by ~41%\non average at full overlap\n(worst single cell ~67%)",
             xy=(4, rat_naive[-1]), xytext=(1.2, 1.62), fontsize=7.5, color="#444444",
             arrowprops=dict(arrowstyle="->", color="#888888", lw=0.8))
 

@@ -68,7 +68,7 @@ for (strength, beta), (mk, col, lab) in styles.items():
 ax.axhline(0, color="black", lw=0.9, ls="--")
 ax.set_xlabel("Number of shared instruments  $n_s$  (of $p=50$ per step)")
 ax.set_ylabel(r"$\Delta$SE  (%)")
-ax.set_title("A  Correction always narrows the interval", loc="left")
+ax.set_title("A  Correction always narrows", loc="left")
 ax.legend(fontsize=7.5, frameon=False, loc="upper right")
 ax.set_xticks([0, 10, 25, 50])
 ax.grid(alpha=0.25, lw=0.5)
@@ -96,15 +96,16 @@ ax.set_ylabel(r"SE  /  SD($\hat\alpha\hat\beta$)")
 ax.set_title("B  Variance calibration", loc="left")
 ax.legend(fontsize=7.5, frameon=False, loc="upper left")
 ax.set_xticks([0, 10, 25, 50])
+ax.set_ylim(0.97, 1.60)
 ax.grid(alpha=0.25, lw=0.5)
-ax.annotate("naive overstates the true SD\nby up to ~65% at full overlap",
-            xy=(50, 1.62), xytext=(12, 1.75), fontsize=7.5, color="#444444",
+ax.annotate("naive overstates the true SD by ~40-42%\nat full overlap; up to 65% for $|\\beta|=1$",
+            xy=(49, 1.43), xytext=(23, 1.04), fontsize=7.0, color="#444444", va="bottom",
             arrowprops=dict(arrowstyle="->", color="#888888", lw=0.8))
 
 fig.suptitle("Supplementary Fig. S3 — Regime map for the covariance correction "
              "(shared-instrument channel, $\\rho_{MY}=0$)",
              fontsize=9.5, y=1.00)
-fig.tight_layout(rect=[0, 0, 1, 0.96])
+fig.subplots_adjust(left=0.070, right=0.985, top=0.815, bottom=0.185, wspace=0.30)
 
 png = os.path.join(FIGDIR, "FigS3_regime_map.png")
 pdf = os.path.join(FIGDIR, "FigS3_regime_map.pdf")
