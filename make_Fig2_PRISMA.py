@@ -84,7 +84,7 @@ side_label(3.8, 5.9, '220 excluded:\nno resolvable EUR-clumped\nexposure→media
 
 # Valid trios after errors
 box(7.5, 4.5, 4.0, 0.85,
-    'Re-estimated trios\n108 valid after 5 accession/\nnetwork errors', '#c9daf8')
+    'Re-estimated trios\n108 valid after 4 accession/\nnetwork errors', '#c9daf8')
 arrow(7.5, 5.475, 7.5, 4.925)
 
 # Overlap result
@@ -93,7 +93,8 @@ box(7.5, 3.1, 4.0, 0.85,
 arrow(7.5, 4.075, 7.5, 3.525)
 
 # Excluded-error detail
-side_label(3.8, 4.5, '5 trios excluded:\naccession/network errors', fontsize=9)
+side_label(3.8, 4.5, '4 trios excluded:\naccession/network errors\n(S210, S173, S291, S326)', fontsize=9)
+side_label(3.8, 3.1, 'S255 recovered by targeted\nre-estimation; overlap\nsub-threshold (excluded\nfrom overlap headline)', fontsize=9)
 
 # Note, placed two line-heights below the bottom of the main diagram
 ax.text(5, 2.32, 'The audit was confined to PubMed and is described fully in the Methods and Supplementary Table S2.',

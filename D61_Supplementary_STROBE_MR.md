@@ -1,4 +1,4 @@
-# Supplementary Material S8 — STROBE-MR Reporting Checklist (adapted)
+# Supplementary Material S10 — STROBE-MR Reporting Checklist (adapted)
 
 We report the present study against the STROBE-MR (Strengthening the Reporting of Observational
 Studies in Epidemiology–Mendelian Randomization) checklist of Skrivankova et al. (JAMA 2021;326:1614–1621),

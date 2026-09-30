@@ -114,43 +114,52 @@ plt.close(fig)
 log(f"[OK] {p5}  ({os.path.getsize(p5)} bytes)")
 log(f"[OK] {p5_pdf}  ({os.path.getsize(p5_pdf)} bytes)")
 
-# ------------------------------------------------------------------ SUPPLEMENTARY FIGURE S3
-# Table 3 : widen_% for the 4 TwoSampleMR-validated overlapping trios
-T3 = [("S014", -9.0, 0.0556), ("S273", -0.7, 0.1538),
-      ("S137", -5.9, 0.019),  ("S217", -0.1, 0.1111)]
-T3 = sorted(T3, key=lambda r: r[1])           # most negative first
+# ------------------------------------------------------------------ SUPPLEMENTARY FIGURE S4
+# Dual-pipeline comparison: all-Python batch re-estimation vs TwoSampleMR cross-check
+# for the 4 adequately powered overlapping trios.
+STUDIES = ["S014", "S137", "S273", "S217"]
+PI = {"S014": 0.0556, "S137": 0.019, "S273": 0.1538, "S217": 0.1111}
+ALLPY = {"S014": -16.0, "S137": -14.2, "S273": -1.1, "S217": -0.2}
+TSMB = {"S014": -9.0, "S137": -5.9, "S273": -0.7, "S217": -0.1}
+STUDIES = sorted(STUDIES, key=lambda s: ALLPY[s])   # most negative all-Python first
 
-fig, ax = plt.subplots(figsize=(7.6, 3.5))
-fig.suptitle("Supplementary Figure S4. Change in indirect-effect SE after S10 correction "
-             "(TwoSampleMR-validated batch re-estimation)",
-             fontsize=11.5, fontweight="bold", y=0.955)
-names = [f"{r[0]}  (\u03c0={r[2]:g})" for r in T3]
-vals  = [r[1] for r in T3]
-ypos  = range(len(vals))
-bars = ax.barh(list(ypos), vals, height=0.55, color="#2b8cbe",
-               edgecolor="#1b5f85", lw=0.6, alpha=0.9)
-for b, v in zip(bars, vals):
-    ax.text(v - 0.22, b.get_y() + b.get_height() / 2, f"{v:.1f}%",
-            va="center", ha="right", fontsize=9.5, color="#113")
+fig, ax = plt.subplots(figsize=(7.8, 3.6))
+fig.suptitle("Supplementary Figure S4. Change in indirect-effect SE after the covariance "
+             "correction: all-Python batch vs TwoSampleMR cross-check",
+             fontsize=11.5, fontweight="bold", y=0.95)
+ypos = list(range(len(STUDIES)))
+h = 0.36
+ax.barh([y + h/2 for y in ypos], [ALLPY[s] for s in STUDIES], height=h, color="#2b8cbe",
+        edgecolor="#1b5f85", lw=0.6, alpha=0.9, label="all-Python")
+ax.barh([y - h/2 for y in ypos], [TSMB[s] for s in STUDIES], height=h, color="#d68910",
+        edgecolor="#7e4e05", lw=0.6, alpha=0.9, label="TwoSampleMR")
+for i, s in enumerate(STUDIES):
+    ax.text(ALLPY[s] - 0.25, ypos[i] + h/2, f"{ALLPY[s]:.1f}", va="center", ha="right",
+            fontsize=8.5, color="#113")
+    ax.text(TSMB[s] - 0.25, ypos[i] - h/2, f"{TSMB[s]:.1f}", va="center", ha="right",
+            fontsize=8.5, color="#113")
 ax.axvline(0, color="#888", ls=(0, (4, 3)), lw=1.2)
-ax.text(0.985, 0.965, "no change", transform=ax.transAxes,
-        fontsize=8.5, color="#888", ha="right", va="top",
+ax.text(0.985, 0.04, "no change", transform=ax.transAxes,
+        fontsize=8.5, color="#888", ha="right", va="bottom",
         bbox=dict(facecolor="white", alpha=0.85, edgecolor="none", pad=1.5))
-ax.set_yticks(list(ypos)); ax.set_yticklabels(names, fontsize=10)
+ax.set_yticks(ypos); ax.set_yticklabels([f"{s}  (\u03c0={PI[s]:g})" for s in STUDIES], fontsize=10)
 ax.invert_yaxis()
-ax.set_xlim(-10.4, 0.9)
-ax.set_xticks([-10, -8, -6, -4, -2, 0])
+ax.set_xlim(-18, 1.2)
+ax.set_xticks([-16, -12, -8, -4, 0])
 ax.set_xlabel("Relative change in SE (%)")
 ax.set_title("4 adequately powered published two-step MR mediation studies with "
-             "genuine instrument overlap (Table 3)",
+             "genuine instrument overlap (Table 2)",
              fontsize=9.5, color="#555", pad=8)
+ax.legend(fontsize=8.5, frameon=False, loc="lower right")
 ax.grid(axis="x", alpha=0.25, ls=":", lw=0.6)
 for s in ("top", "right"): ax.spines[s].set_visible(False)
-fig.text(0.01, -0.02, "TwoSampleMR-calibrated (cross-validated against the deposited D56 ground "
-                      "truth); all values negative = CI narrows; zero-flip conclusion fully validated.",
-         fontsize=8, color="#999")
+fig.text(0.01, -0.03, "Both pipelines narrow; TwoSampleMR returns a systematically smaller "
+                      "correction (\u22120.1% to \u22129.0%) than the all-Python batch "
+                      "(\u22120.2% to \u221216.0%, median \u22121.6%) because the wrappers "
+                      "re-harmonise effects differently (e.g., S014 \u03b1\u0302 SE 0.00096 vs 0.00345).",
+         fontsize=7.5, color="#666")
 
-fig.tight_layout(rect=[0, 0.02, 1, 0.91])
+fig.tight_layout(rect=[0, 0.04, 1, 0.90])
 p6 = os.path.join(FIGDIR, "FigS4_batch_forest.png")
 fig.savefig(p6, dpi=300, bbox_inches="tight", pad_inches=0.22, facecolor="white")
 p6_pdf = os.path.join(FIGDIR, "FigS4_batch_forest.pdf")
@@ -160,10 +169,10 @@ log(f"[OK] {p6}  ({os.path.getsize(p6)} bytes)")
 log(f"[OK] {p6_pdf}  ({os.path.getsize(p6_pdf)} bytes)")
 
 log("")
-log("Suppl Fig S2 source values (Supplementary Table S1) : 12 cells, max rel_err = "
+log("Suppl Fig S2 source values (validation sweep, Fig S2) : 12 cells, max rel_err = "
     f"{max(r[4] for r in T1):.2f}%")
-log("Suppl Fig S4 source values (Table 3) : " +
-    ", ".join(f"{n}={v}%" for n, v, _ in T3))
+log("Suppl Fig S4 source values (dual pipeline) : " +
+    ", ".join(f"{s} allPython={ALLPY[s]}% TwoSampleMR={TSMB[s]}%" for s in STUDIES))
 log("")
 log("DONE.")
 open(LOG, "w", encoding="utf-8").write(_log.getvalue())

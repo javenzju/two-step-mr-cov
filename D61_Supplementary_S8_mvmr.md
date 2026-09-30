@@ -1,12 +1,12 @@
 # Supplementary Methods S8 — MVMR generalization of Cov(α̂, β̂) and the S110 worked example
 
-This supplement extends the univariable two-step closed form (main text §2, Supplementary Methods S1–S6, the "S10" tool) to the multivariable / merged-pool ("MVMR-variant") design that 78 of 695 coded reports (11.2% [95% CI 9.1–13.8%]) actually use. We give the derivation outline and a worked example on the audited S110 design. No full simulation validation of the MVMR case is performed here; the extension is presented as a roadmap with one structural numerical illustration.
+This supplement extends the univariable two-step semi-analytic expression (main text §2, Supplementary Methods S1–S6, the "S10" tool) to the multivariable / merged-pool ("MVMR-variant") design that 78 of 695 coded reports (11.2% [95% CI 9.1–13.8%]) actually use. We give the derivation outline and a worked example on the audited S110 design. No full simulation validation of the MVMR case is performed here; the extension is presented as a roadmap with one structural numerical illustration.
 
 ## S8.1 Univariable baseline (recap)
 
 Step-1 IVW estimate of X → M: α̂ = Σⱼ (β̂_{X,j} γ̂_{M,j} / σ̂_{M,j}²) / Σⱼ (β̂_{X,j}² / σ̂_{M,j}²), instruments j = 1…n₁.
 Step-2 IVW estimate of M → Y: β̂ = Σₖ (β̂_{M,k} γ̂_{Y,k} / σ̂_{Y,k}²) / Σₖ (β̂_{M,k}² / σ̂_{Y,k}²), instruments k = 1…n₂.
-The S10 closed form is
+The S10 semi-analytic expression is
 
 Cov(α̂, β̂) ≈ 2 α̂ β̂ · Σ_{s ∈ S} [ (β̂_{X,s}/σ̂_{M,s}²) · (β̂_{M,s} γ̂_{Y,s}/σ̂_{Y,s}²) ] / (Σⱼ β̂_{X,j}²/σ̂_{M,j}²)²
 &nbsp;&nbsp;&nbsp;&nbsp;+ ρ_MY · n_s ρ_MY μ_X μ_M /(σ̂_M σ̂_Y) · E[inv Aa]²,
@@ -32,14 +32,14 @@ This **reduces to the univariable S10 term when p = 1**, because then h_s = (β�
 
 Each h_s > 0, so the sign of the shared-instrument term is the sign of α̂β̂. Therefore:
 
-- **Same-sign mediation (α̂β̂ > 0)** ⇒ shared-instrument covariance negative ⇒ corrected SE smaller ⇒ the naive delta method is *conservative*. Holds for MVMR exactly as for univariable.
-- **Opposite-sign mediation or ρ_MY > 0** ⇒ corrected SE larger ⇒ naive anti-conservative.
+- **Same-sign and opposite-sign mediation alike.** By Remark S2.5a the shared-instrument covariance satisfies sign(Cov_shared) = −sign(α̂β̂), so the correction term 2α̂β̂·Cov_shared is negative and the corrected SE is smaller than the naive delta-method SE whether α̂β̂ > 0 or α̂β̂ < 0: the naive method is *conservative* in both regimes. This carries over to MVMR exactly as for the univariable case.
+- **The rho_MY channel (Remark S2.5b) is separate.** Sample overlap adds a distinct covariance term whose correction sign is sign(beta)*rho_MY and is therefore not sign-definite in general; it is reported separately and did not dominate in any configuration we examined.
 
 The correction is therefore necessary for valid inference in the MVMR-variant design for the same reason as the univariable case, and its **magnitude scales with n_s = L** (the number of shared instruments).
 
 ## S8.4 Worked example — S110 (audited merged-pool MVMR design)
 
-S110 (PMID 32833022, "Genetic determinants of increased body mass index mediate the effect of smoking on increased risk for type 2 diabetes but not coronary artery disease") is coded as an **MVMR-variant / merged-IV-pool** design: the authors build "a combined instrument with 1410 SNPs significant for smoking or BMI" and reuse it across both steps. In our coding table `n_IV_shared = full_overlap` and `IV_selection_strategy = 合并IV池`, i.e. **π_shared ≈ 1.0 and n_s = 1410** — the maximal-overlap regime. Every re-estimated trio in the main batch had n_s = 1–3, so S110 sits at the opposite, far larger extreme of the same spectrum our closed form describes.
+S110 (PMID 32833022, "Genetic determinants of increased body mass index mediate the effect of smoking on increased risk for type 2 diabetes but not coronary artery disease") is coded as an **MVMR-variant / merged-IV-pool** design: the authors build "a combined instrument with 1410 SNPs significant for smoking or BMI" and reuse it across both steps. In our coding table `n_IV_shared = full_overlap` and `IV_selection_strategy = merged-IV-pool`, i.e. **π_shared ≈ 1.0 and n_s = 1410** — the maximal-overlap regime. Every re-estimated trio in the main batch had n_s = 1–3, so S110 sits at the opposite, far larger extreme of the same spectrum our semi-analytic expression describes.
 
 Because S110's trait-specific GWAS accessions were not deposited for re-estimation (it is outside the 113-trio OpenGWAS batch), we give a **structural illustration**, not a re-estimation:
 
@@ -50,4 +50,4 @@ Because S110's trait-specific GWAS accessions were not deposited for re-estimati
 
 ## S8.5 Why this raises the novelty ceiling
 
-The main paper solves the *univariable* product-method case and shows the correction is usually conservative at the small n_s realized in the literature. The MVMR generalization (S8.2–S8.3) shows the same closed form extends to the merged-pool design — the design most likely to need correction — with the correction magnitude growing with n_s. S110 demonstrates that the highest-overlap designs are exactly those the literature does not tag, so the method closes the gap where it is widest.
+The main paper solves the *univariable* product-method case and shows the correction is usually conservative at the small n_s realized in the literature. The MVMR generalization (S8.2–S8.3) shows the same semi-analytic expression extends to the merged-pool design — the design most likely to need correction — with the correction magnitude growing with n_s. S110 demonstrates that the highest-overlap designs are exactly those the literature does not tag, so the method closes the gap where it is widest.
