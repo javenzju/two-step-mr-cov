@@ -1,0 +1,5 @@
+﻿study_id,status,sigma_alpha,sigma_beta,se_alpha_FE,se_alpha_TSMR,se_beta_FE,se_beta_TSMR,SE_inflation_alpha,SE_inflation_beta,cov_FE,cov_TSMR,widen_pct_FE,widen_pct_TSMR,naive_sig_FE,corr_sig_FE,naive_sig_TSMR,corr_sig_TSMR,flip_FE,flip_TSMR,flip_conclusion_stable,deposited_widen_pct
+S014,OK,4.1272,2.2305,0.000965,0.003982,0.004938,0.011014,4.127,2.231,-4.759350e-06,-1.967662e-05,-16.02,-5.26,显著,显著,不显著,不显著,False,False,True,-9.03
+S273,OK,1.3001,1.7601,0.00081,0.001053,0.95001,1.672126,1.3,1.76,-2.697256e-05,-2.697256e-05,-1.15,-0.43,显著,显著,不显著,不显著,False,False,True,-0.72
+S137,数据不全(离线缓存),,,,,,,,,,,,,,,,,,,,
+S217,数据不全(离线缓存),,,,,,,,,,,,,,,,,,,,

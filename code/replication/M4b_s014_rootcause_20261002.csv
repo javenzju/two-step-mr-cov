@@ -1,0 +1,10 @@
+﻿口径,n_snp,beta,se,说明
+"A. IVW-FE, Var=σY only (Python 现管线)",203,0.128323,0.004938,"w=bx²/σY², se=1/sqrt(Σw)"
+"B. IVW-RE(Burgess), Var=σY only",203,0.128323,0.004938,se=sqrt(1/Σw+τ²)  τ²=0.000e+00 Q=0.1
+"C. ratio meta FE, Var=σY&σX (TwoSampleMR式)",203,0.1045,0.00516,se_ratio=sqrt(σY²/bx²+by²σX²/bx⁴)
+D. ratio meta DL-RE (TwoSampleMR mr_ivw),203,0.114281,0.008306,rma(method='DL')  τ²=7.614e-03 Q=485.8
+D'. 同上 + 剔回文中频SNP (最贴近R),198,0.115594,0.008476,"rma DL, R-like SNP set  τ²=7.811e-03 Q=481.3"
+E. TSMR 0.7.6 mr_ivw_fe (w=1/σY²),203,0.123031,0.004938,se=1/sqrt(Σw·bx²)  σ=2.231 Q=1005.0
+F. TSMR 0.7.6 mr_ivw_mre (无欠离散校正),203,0.123031,0.011014,se=σ/sqrt(Σw·bx²)  σ=2.231 Q=1005.0
+"G. TSMR 0.7.6 mr_ivw (默认, 欠离散校正)",203,0.123031,0.011014,"se=se_mre/min(1,σ)  σ=2.231 Q=1005.0"
+G'. 同上 + 剔回文中频SNP (最贴近R全集),198,0.124242,0.011243,"se=se_mre/min(1,σ)  σ=2.252 Q=998.8"
